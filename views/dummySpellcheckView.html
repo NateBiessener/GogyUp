@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>GogyUp</title>
-    <script src="vendors/angular.min.js"></script>
-    <script src="vendors/angular-route.min.js"></script>
+    <script src="../vendors/angular.min.js"></script>
+    <script src="../vendors/angular-route.min.js"></script>
+    <script src="../scripts/controllers/spellcheckController.js" charset="utf-8"></script>
   </head>
   <body ng-controller="spellcheckController">
     {{enteredWord}}
+    {{receivedWord}}
+    <button ng-click="checkSpelling()"></button>
   </body>
 </html>
