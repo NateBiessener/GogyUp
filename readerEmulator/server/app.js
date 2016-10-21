@@ -11,7 +11,7 @@ app.listen(3141, function(){
 
 app.get('/', function(req, res){
   console.log('base url hit');
-  res.sendFile(path.resolve('gogyUpReaderEmulator/public/index.html'));
+  res.sendFile(path.resolve('readerEmulator/public/index.html'));
 });
 
-app.use(express.static('gogyUpReaderEmulator/public'));
+app.use(express.static('readerEmulator/public'));
