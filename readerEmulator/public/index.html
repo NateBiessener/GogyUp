@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='myApp'>
   <head>
     <meta charset="utf-8">
     <title>GogyUp Reader</title>
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/client.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-controller='emulatorController'>
     <h1>This is a title</h1>
+    <p>
+      These are words. Here are some more words. Everything is words. Mostly these are test words. Some will be used for the spelling activity. Words like:
+      <ul>
+        <li ng-click='spellingGame()'>grease</li>
+        <li ng-click='spellingGame()'>these</li>
+        <li ng-click='spellingGame()'>piece</li>
+        <li ng-click='spellingGame()'>seem</li>
+        <li ng-click='spellingGame()'>beam</li>
+      </ul>
+    </p>
   </body>
 </html>
