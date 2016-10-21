@@ -6,10 +6,11 @@
     <script src="../vendors/angular.min.js"></script>
     <script src="../vendors/angular-route.min.js"></script>
     <script src="../scripts/controllers/spellcheckController.js" charset="utf-8"></script>
+    <script src="../scripts/controllers/firstHintController.js" charset="utf-8"></script>
   </head>
-  <body ng-controller="spellcheckController">
-    {{enteredWord}}
-    {{receivedWord}}
-    <button ng-click="checkSpelling()"></button>
+  <body ng-controller="firstHintController">
+    <div class="firstHint" ng-repeat="letter in dummyArray" style="display: inline">
+      _
+    </div>
   </body>
 </html>
