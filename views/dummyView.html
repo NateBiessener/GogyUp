@@ -10,8 +10,8 @@
     <script src="../scripts/controllers/secondHintController.js" charset="utf-8"></script>
   </head>
   <body ng-controller="secondHintController">
-    <div class="firstHint" ng-repeat="letter in dummyArray track by $index" style="display: inline">
-      _<p ng-show='graphemeCharacter'></p>
+    <div class="firstHint" ng-repeat="letter in domArray track by $index" style="display: inline">
+      <p>{{letter}}</p>
     </div>
     <button ng-click="placeGrapheme()"></button>
   </body>
