@@ -7,10 +7,12 @@
     <script src="../vendors/angular-route.min.js"></script>
     <script src="../scripts/controllers/spellcheckController.js" charset="utf-8"></script>
     <script src="../scripts/controllers/firstHintController.js" charset="utf-8"></script>
+    <script src="../scripts/controllers/secondHintController.js" charset="utf-8"></script>
   </head>
-  <body ng-controller="firstHintController">
-    <div class="firstHint" ng-repeat="letter in dummyArray" style="display: inline">
-      _
+  <body ng-controller="secondHintController">
+    <div class="firstHint" ng-repeat="letter in dummyArray track by $index" style="display: inline">
+      _<p ng-show='graphemeCharacter'></p>
     </div>
+    <button ng-click="placeGrapheme()"></button>
   </body>
 </html>
