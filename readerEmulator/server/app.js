@@ -10,7 +10,7 @@ app.listen(3141, function(){
 });
 
 app.get('/', function(req, res){
-  console.log('base url hit');
+  // console.log('base url hit');
   res.sendFile(path.resolve('readerEmulator/public/index.html'));
 });
 

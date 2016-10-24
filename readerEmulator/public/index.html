@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html ng-app='myApp'>
+<html>
   <head>
     <meta charset="utf-8">
     <title>GogyUp Reader</title>
-    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="vendors/jquery.js" charset="utf-8"></script>
     <script src="scripts/client.js" charset="utf-8"></script>
   </head>
-  <body ng-controller='emulatorController'>
+  <body>
     <h1>This is a title</h1>
     <p>
       These are words. Here are some more words. Everything is words. Mostly these are test words. Some will be used for the spelling activity. Words like:
       <ul>
-        <li ng-click='spellingGame()'>grease</li>
-        <li ng-click='spellingGame()'>these</li>
-        <li ng-click='spellingGame()'>piece</li>
-        <li ng-click='spellingGame()'>seem</li>
-        <li ng-click='spellingGame()'>beam</li>
+        <li>Put the <a id='grease'>grease</a> on the axel</li>
+        <li>I think <a id='these'>these</a> examples could be better</li>
+        <li>This is only a <a id='piece'>piece</a> of our project</li>
+        <li>This doesn't <a id='seem'>seem</a> too hard</li>
       </ul>
+      <iframe src="testActivity/index.html" width="400px" height="600px"></iframe>
     </p>
   </body>
 </html>
