@@ -2,15 +2,18 @@ var possible = "abcdefghijklmnopqrstuvwxyz";
 myApp.controller('firstTryController', ['$scope', function($scope){
   console.log('in firstTryController');
 
+  console.log(window.parent.stuff.word.fullWord);
+  var dataIn = window.parent.stuff;
+
   // spellcheck dummy words
   $scope.enteredWord = 'especially';
   console.log($scope.enteredWord);
-  $scope.anotherWord = 'crap';
-  console.log($scope.anotherWord);
+  $scope.correctWord = dataIn.word.fullWord;
+  console.log($scope.correctWord);
   $scope.displayPlacement = function(){
     console.log("in displayPlacement");
     var inputArray = [];
-    for(var i = 0; i < $scope.enteredWord.length; i++){
+    for(var i = 0; i < $scope.correctWord.length; i++){
       inputArray.push("");
     }
     $scope.displayInput = inputArray;
@@ -19,8 +22,8 @@ myApp.controller('firstTryController', ['$scope', function($scope){
     console.log('in displayWord');
     var wordArray = [];
     //make word into an array of letters
-    for(var i= 0; i< $scope.enteredWord.length; i++){
-    wordArray.push($scope.enteredWord.charAt(i));
+    for(var i= 0; i< $scope.correctWord.length; i++){
+    wordArray.push($scope.correctWord.charAt(i));
   }
   //generate 2 random letters to add to array
   for( var j=0; j < 2; j++){
@@ -52,7 +55,7 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   $scope.checkSpelling = function(){
     console.log('in $scope.checkSpelling');
 
-    if($scope.enteredWord === $scope.anotherWord){
+    if($scope.enteredWord === $scope.correctWord){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
