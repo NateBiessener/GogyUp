@@ -10,15 +10,7 @@
     <script src="../scripts/controllers/secondTryController.js" charset="utf-8"></script>
     <script src="../scripts/controllers/thirdTryController.js" charset="utf-8"></script>
   </head>
-  <main ng-view></main>
-  <body ng-controller="spellcheckController">
-    <!-- <div class="firstHint" ng-repeat="letter in domArray track by $index"
-    style="display: inline" ng-hide=>
-      <p>{{letter}}</p>
-    </div> -->
-    <div ng-hide="hideGame">TEST</div>
-    <div ng-show="correctAnswer">Great job!</div>
-    <div ng-show="incorrectAnswer">Try again!</div>
-    <button ng-click="checkSpelling()">Check My Spelling</button>
+  <body>
+      <main ng-view></main>
   </body>
 </html>

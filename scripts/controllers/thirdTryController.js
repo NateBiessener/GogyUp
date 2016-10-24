@@ -1,5 +1,5 @@
-myApp.controller('firstTryController', ['$scope', function($scope){
-  console.log('in firstTryController');
+myApp.controller('thirdTryController', ['$scope', function($scope){
+  console.log('in thirdTryController');
 
   // spellcheck dummy words
   $scope.enteredWord = 'especially';
