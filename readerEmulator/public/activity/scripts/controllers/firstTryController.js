@@ -12,14 +12,21 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   console.log($scope.correctWord);
 
   // displayPlacement function
-  $scope.displayPlacement = function(){
-    console.log("in displayPlacement");
-    var inputArray = [];
-    for(var i = 0; i < $scope.correctWord.length; i++){
-      inputArray.push("");
-    }
-    $scope.displayInput = inputArray;
-  }; // end displayPlacement function
+  // $scope.displayPlacement = function(){
+  //   console.log("in displayPlacement");
+  //   var inputArray = [];
+  //   for(var i = 0; i < $scope.correctWord.length; i++){
+  //     inputArray.push("");
+  //   }
+  //   $scope.displayInput = inputArray;
+  // }; // end displayPlacement function
+
+  $scope.placedWord = "";
+  // placeLetter function
+  $scope.placeLetter = function(letter){
+    console.log('in placeLetter');
+    $scope.placedWord += letter;
+  }; // end placeLetter function
 
   // displayWord function
   $scope.displayWord = function(){
