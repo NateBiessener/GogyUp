@@ -21,7 +21,7 @@ myApp.controller('secondTryController', ['$scope', function($scope){
 
   }; // end checkSpelling function
 
-  // array to repeat over to create spaces
+  // array to repeat over to create first hint
   $scope.testWord = "bear";
   $scope.spacesArray = $scope.testWord.split("");
   console.log($scope.spacesArray);
