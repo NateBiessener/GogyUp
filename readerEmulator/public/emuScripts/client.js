@@ -89,7 +89,7 @@ $(document).ready(function(){
     //create new iframe
     var activity = $('<iframe />');
     //source game file *****************CHANGE TO ACTUAL GAME FILE*******************//
-    activity.attr('src', 'testActivity/index.html');
+    activity.attr('src', 'activity/views/index.html');
     //******************CHANGE THESE TO WHATEVER THEY NEED TO BE*********************//
     activity.attr('height', '200px');
     activity.attr('width', '400px');
