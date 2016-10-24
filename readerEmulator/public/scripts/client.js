@@ -61,6 +61,7 @@ $(document).ready(function(){
 
   function runGame(dataIn){
     console.log(dataIn);
+    window.stuff = dataIn;
     var activity = $('<iframe />');
     activity.attr('src', 'testActivity/index.html');
     $('body').append(activity);

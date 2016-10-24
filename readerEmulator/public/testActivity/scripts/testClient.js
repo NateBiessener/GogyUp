@@ -9,4 +9,5 @@ myApp.controller('testController', ['$scope', function($scope){
     console.log('all is none');
     window.parent.destroy();
   };
+  $scope.text = window.parent.stuff;
 }]);
