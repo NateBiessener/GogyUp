@@ -1,7 +1,24 @@
 console.log('script sourced');
 
-window.destroy = function(){
+window.g_appMgr = {};
+var appMgr = window.g_appMgr;
+
+//assumes only one iframe will be on the page at a time
+appMgr.setActivityComplete = function(){
   $('iframe').remove();
+};
+
+appMgr.dataSave = function(saveVarName, objectToSave, callback){
+  appMgr[saveVarName] = objectToSave;
+  if (callback) {
+    callback();
+  }
+};
+
+appMgr.dataLoad = function(varName, callback){
+  if (callback) {
+    callback(appMgr[varName]);
+  }
 };
 
 $(document).ready(function(){
@@ -64,6 +81,8 @@ $(document).ready(function(){
     window.stuff = dataIn;
     var activity = $('<iframe />');
     activity.attr('src', 'testActivity/index.html');
+    activity.attr('height', '200px');
+    activity.attr('width', '400px');
     $('body').append(activity);
   }
 
