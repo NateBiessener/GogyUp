@@ -1,0 +1,17 @@
+<div ng-init="displayPlacement()">
+  <span ng-repeat="input in displayInput track by $index">
+    <input type="text" maxlength="1" placeholder="{{input}}"></input>
+  </span>
+</div>
+<div>
+  <div ng-controller="firstTryController">
+<div ng-init="displayWord()"></div>
+{{word}}
+<span ng-repeat="letter in allLetter track by $index">{{letter}}</span>
+
+</div>
+  <div ng-hide="hideGame">TEST</div>
+  <div ng-show="correctAnswer">Great job!</div>
+  <div ng-show="incorrectAnswer">Try again!</div>
+  <button ng-click="checkSpelling()"></button>
+</div>
