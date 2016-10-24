@@ -1,5 +1,12 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
+var appMgr = window.parent.g_appMgr;
+
+myApp.controller('mainController', ['$scope', function($scope){
+  $scope.getRidOfMe = function(){
+    appMgr.setActivityComplete();
+  };
+}])
 // angular routing
 myApp.config(['$routeProvider', function($routeProvider){
 

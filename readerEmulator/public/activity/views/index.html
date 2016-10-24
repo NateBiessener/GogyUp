@@ -10,7 +10,8 @@
     <script src="../scripts/controllers/secondTryController.js" charset="utf-8"></script>
     <script src="../scripts/controllers/thirdTryController.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-controller="mainController">
+      <button type="button" ng-click="getRidOfMe()">Close this window</button>
       <main ng-view></main>
   </body>
 </html>
