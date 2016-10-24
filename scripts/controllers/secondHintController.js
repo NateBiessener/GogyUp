@@ -1,12 +1,12 @@
 myApp.controller('secondHintController', ['$scope', function($scope){
   console.log('in secondHintController');
 
-  $scope.dummyWord = "grease";
+  $scope.dummyWord = "policeman";
   $scope.dummyArray = $scope.dummyWord.split("");
   var dummyArray = $scope.dummyArray;
   console.log($scope.dummyArray);
 
-  $scope.targetGrapheme = "ea";
+  $scope.targetGrapheme = "ice";
   $scope.splitGrapheme = $scope.targetGrapheme.split("");
   var splitGraph = $scope.splitGrapheme;
   console.log($scope.splitGrapheme);
@@ -32,19 +32,5 @@ myApp.controller('secondHintController', ['$scope', function($scope){
     $scope.domArray = domArray;
     console.log($scope.domArray);
   };
-
-  // $scope.placeGrapheme = function(array, target){
-  //   console.log('in $scope.placeGrapheme');
-  //
-  //   for (var i = 0; i < array.length; i++) {
-  //     if(array[i] === target){
-  //       $scope.position = i;
-  //     }
-  //     return $scope.position;
-  //   }
-  //
-  //   console.log($scope.position);
-  //
-  // };
 
 }]); // end secondHintController

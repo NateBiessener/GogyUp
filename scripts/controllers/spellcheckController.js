@@ -1,6 +1,4 @@
-var myApp = angular.module('myApp', []);
-
-myApp.controller('spellcheck', ['$scope', function($scope){
+myApp.controller('spellcheckController', ['$scope', function($scope){
 
   $scope.enteredWord = 'especially';
   console.log($scope.enteredWord);
@@ -11,9 +9,11 @@ myApp.controller('spellcheck', ['$scope', function($scope){
     console.log('in $scope.checkSpelling');
 
     if($scope.enteredWord === $scope.anotherWord){
-      alert('You win!');
+      $scope.hideGame = true;
+      $scope.correctAnswer = true;
     } else {
-      alert('Try again!');
+      $scope.hideGame = true;
+      $scope.incorrectAnswer = true;
     }
 
   };
