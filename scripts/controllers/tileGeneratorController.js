@@ -11,7 +11,6 @@ $scope.displayWord = function(){
   console.log('in displayWord');
   console.log(word);
   //make word into an array of letters
-  $scope.word = word;
   for(var i= 0; i< word.length; i++){
   wordArray.push(word.charAt(i));
 }

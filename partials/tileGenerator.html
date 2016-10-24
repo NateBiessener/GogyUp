@@ -11,7 +11,7 @@
     <div ng-controller="tileGeneratorController">
 <div ng-init="displayWord()"></div>
 {{word}}
-<div ng-repeat="letter in allLetter track by $index">{{letter}}</div>
+<span ng-repeat="letter in allLetter track by $index">{{letter}}</span>
 
 </div>
   </body>
