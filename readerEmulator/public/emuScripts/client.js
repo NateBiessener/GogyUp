@@ -38,7 +38,7 @@ $(document).ready(function(){
   		},
   	  "graphemeToLearn": 'ea',
   	  "sentence": removeTags($(this).parent().html())
-  	}
+  	};
     runGame(objectToSend);
   });
   $('body').on('click', '#these', function(){
@@ -51,7 +51,7 @@ $(document).ready(function(){
   		},
   	  "graphemeToLearn": 'e',
   	  "sentence": removeTags($(this).parent().html())
-  	}
+  	};
     runGame(objectToSend);
   });
   $('body').on('click', '#piece', function(){
@@ -64,7 +64,7 @@ $(document).ready(function(){
   		},
   	  "graphemeToLearn": 'ie',
   	  "sentence": removeTags($(this).parent().html())
-  	}
+  	};
     runGame(objectToSend);
   });
   $('body').on('click', '#seem', function(){
@@ -77,7 +77,7 @@ $(document).ready(function(){
   		},
   	  "graphemeToLearn": 'ee',
   	  "sentence": removeTags($(this).parent().html())
-  	}
+  	};
     runGame(objectToSend);
   });
 
@@ -101,4 +101,4 @@ $(document).ready(function(){
   function removeTags(sentence){
     return sentence.replace(/(<([^>]+)>)/ig,"");
   }
-})
+});
