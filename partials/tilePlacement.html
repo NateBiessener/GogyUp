@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>GogyUp</title>
+    <script src="../vendors/angular.min.js" charset="utf-8"></script>
+    <script src="../vendors/angular-route.min.js" charset="utf-8"></script>
+    <script src="../scripts/controllers/tilePlacementController.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div ng-controller="tilePlacementController">
+
+<div ng-init="displayPlacement()">
+  <span ng-repeat="input in displayInput track by $index">
+    <input type="text" maxlength="1" placeholder="{{input}}"></input>
+  </span>
+</div>
+    </div>
+  </body>
+  </body>
+</html>
