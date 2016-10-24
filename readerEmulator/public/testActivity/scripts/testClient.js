@@ -11,7 +11,7 @@ myApp.controller('testController', ['$scope', function($scope){
   });
   $scope.anNIHILateMe = function(){
     appMgr.dataSave('saveVarName', $scope.text);
-    appMgr.setActivityComplete();
+    appMgr.setActivityComplete('I win, but that doesn\'t mean anything');
   };
   $scope.text = window.parent.stuff;
 }]);
