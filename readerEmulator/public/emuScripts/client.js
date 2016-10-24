@@ -81,7 +81,7 @@ $(document).ready(function(){
     runGame(objectToSend);
   });
 
-//creates an iframe that will run the spelling game. Game script will pull data from window.stuff
+  //creates an iframe that will run the spelling game. Game script will pull data from window.stuff
   function runGame(dataIn){
     console.log(dataIn);
     //******************* MAY need to be changed to an additional API method ****************************//
@@ -91,7 +91,7 @@ $(document).ready(function(){
     //source game file *****************CHANGE TO ACTUAL GAME FILE*******************//
     activity.attr('src', 'activity/views/index.html');
     //******************CHANGE THESE TO WHATEVER THEY NEED TO BE*********************//
-    activity.attr('height', '200px');
+    activity.attr('height', '600px');
     activity.attr('width', '400px');
     //attach iframe to DOM
     $('body').append(activity);
