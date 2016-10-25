@@ -2,9 +2,13 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   console.log('in thirdTryController');
 
   console.log(window.parent.stuff.word.fullWord);
+
   var dataIn = window.parent.stuff;
+
   var correctWord = window.parent.stuff.word.fullWord;
+
   $scope.allLetter = SpellingFactory.displayWord();
+
   // spellcheck
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
@@ -60,11 +64,12 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   $scope.targetArray = $scope.targetWord.split("");
   var targetArray = $scope.targetArray;
   console.log($scope.targetArray);
+
   $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
   $scope.splitGrapheme = $scope.targetGrapheme.split("");
   var splitGraph = $scope.splitGrapheme;
   console.log($scope.splitGrapheme);
-  //
+
   var Graph = $scope.targetGrapheme;
   console.log(Graph, correctWord);
   var graphemeIndex = correctWord.indexOf(Graph);
