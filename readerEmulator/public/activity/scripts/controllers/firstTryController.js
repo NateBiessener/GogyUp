@@ -19,39 +19,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   }; // end placeLetter function
 
   // displayWord function
-  $scope.displayWord = function(){
-    console.log('in displayWord');
-    var wordArray = [];
-    //make word into an array of letters
-    for(var i= 0; i< $scope.correctWord.length; i++){
-    wordArray.push($scope.correctWord.charAt(i));
-  }
-    //generate 2 random letters to add to array
-    for( var j=0; j < 2; j++){
-            wordArray.push(possible.charAt(Math.floor(Math.random() * possible.length)));
-          }
-          //shuffle letters into different positions on the array
-          function shuffle(wordArray) {
-            var m = wordArray.length, t, i;
+  $scope.allLetter= SpellingFactory.displayWord();
 
-            // While there remain elements to shuffle…
-            while (m) {
-
-              // Pick a remaining element…
-              i = Math.floor(Math.random() * m--);
-
-              // And swap it with the current element.
-              t = wordArray[m];
-              wordArray[m] = wordArray[i];
-              wordArray[i] = t;
-            }
-
-            return wordArray;
-          }
-          //the letters in wordArray will be mixed around
-    shuffle(wordArray);
-    $scope.allLetter= wordArray;
-  }; // end displayWord function
 
   // spellchecking function
   $scope.checkSpelling = function(){
