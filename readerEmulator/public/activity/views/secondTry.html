@@ -1,7 +1,13 @@
-<div ng-init="displayUnderline()"><div>
-  <p>{{underline}}</p>
-
-<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
-  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p></div>
+<div ng-init="displayWord()"></div>
+<div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px;">
+  <p ng-click="removeLetter($index)" style="display: inline;">{{letter}}</p>
 </div>
+<br>
+<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
+  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p>
+</div>
+<div ng-hide="hideGame">TEST</div>
+<div ng-show="correctAnswer">Great job!</div>
+<div ng-show="incorrectAnswer">Try again!</div>
+<button ng-click="checkSpelling(placedWord)">Check Spelling</button>
 <a href="#thirdTry">Third Screen for Testing</a>

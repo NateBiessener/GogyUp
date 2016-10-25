@@ -3,9 +3,7 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
-  var dataIn = window.parent.stuff;
 
-  // var dataIn = window.parent.stuff;
   SpellingFactory.storeObject(window.parent.stuff);
   // spellcheck dummy words
 
@@ -35,10 +33,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       return start + index;
     });
     if(placedWord === $scope.correctWord){
-      $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
-      $scope.hideGame = true;
       $scope.incorrectAnswer = true;
     }
 

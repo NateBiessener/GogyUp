@@ -4,7 +4,7 @@ var appMgr = window.parent.g_appMgr;
 
 myApp.controller('mainController', ['$scope', function($scope){
   var sentence = window.parent.stuff.sentence;
-  var word = window.parent.stuff.word.fullWord
+  var word = window.parent.stuff.word.fullWord;
   console.log(sentence);
   $scope.displaySentence = function(){
     $scope.showSentence = sentence.replace(word,"_______");
