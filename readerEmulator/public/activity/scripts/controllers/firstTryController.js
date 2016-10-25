@@ -53,11 +53,12 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   }; // end displayWord function
 
   // spellchecking function
-  $scope.checkSpelling = function(){
+  $scope.checkSpelling = function(placedWord){
     console.log('in $scope.checkSpelling');
+    console.log(placedWord);
     console.log($scope.correctWord);
 
-    if($scope.placedWord === $scope.correctWord){
+    if(placedWord === $scope.correctWord){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
