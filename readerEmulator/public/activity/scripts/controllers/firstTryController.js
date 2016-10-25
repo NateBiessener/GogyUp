@@ -3,29 +3,32 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
+  var dataIn = window.parent.stuff;
+
   // var dataIn = window.parent.stuff;
   SpellingFactory.storeObject(window.parent.stuff);
   // spellcheck dummy words
-  $scope.enteredWord = 'especially';
-  console.log($scope.enteredWord);
+
   $scope.correctWord = SpellingFactory.loadObject().word.fullWord;
-  // console.log($scope.correctWord);
 
   $scope.placedWord = "";
   // placeLetter function
   $scope.placeLetter = function(letter){
     console.log('in placeLetter');
     $scope.placedWord += letter;
+    console.log($scope.placedWord);
   }; // end placeLetter function
 
   // displayWord function
   $scope.allLetter = SpellingFactory.displayWord();
 
   // spellchecking function
-  $scope.checkSpelling = function(){
+  $scope.checkSpelling = function(placedWord){
     console.log('in $scope.checkSpelling');
-    console.log();
-    if(true){
+    console.log(placedWord);
+    console.log($scope.correctWord);
+
+    if(placedWord === $scope.correctWord){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
