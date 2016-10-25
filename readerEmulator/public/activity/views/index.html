@@ -12,6 +12,8 @@
   </head>
   <body ng-controller="mainController">
       <button type="button" ng-click="getRidOfMe()">Close this window</button>
+      <div ng-init="displaySentence()"><div>
+        {{showSentence}}
       <main ng-view></main>
   </body>
 </html>
