@@ -29,9 +29,11 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
     console.log('in $scope.checkSpelling');
     console.log(placedWord);
     console.log($scope.correctWord);
-    placedWord = placedWord.reduce(function(start, index){
-      return start + index;
-    });
+    if (placedWord.length > 0){
+      placedWord = placedWord.reduce(function(start, index){
+        return start + index;
+      });
+    }
     if(placedWord === $scope.correctWord){
       $scope.correctAnswer = true;
     } else {
