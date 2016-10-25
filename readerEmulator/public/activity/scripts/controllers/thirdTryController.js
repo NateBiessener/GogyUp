@@ -13,7 +13,22 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
-  // $scope.placedWord = [];
+  $scope.targetWord = correctWord;
+  $scope.targetArray = $scope.targetWord.split("");
+  var targetArray = $scope.targetArray;
+  console.log($scope.targetArray);
+  $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
+  $scope.splitGrapheme = $scope.targetGrapheme.split("");
+  var splitGraph = $scope.splitGrapheme;
+  console.log($scope.splitGrapheme);
+  //
+  var Graph = $scope.targetGrapheme;
+  console.log(Graph, correctWord);
+  var graphemeIndex = correctWord.indexOf(Graph);
+  console.log(graphemeIndex);
+
+  $scope.placedWord = [];
+  placeGrapheme();
   // for (var i = 0; i < $scope.correctWord.length; i++) {
   //   $scope.placedWord.push('_');
   // }
@@ -44,50 +59,17 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
 
   }; // end checkSpelling function
 
-  // start placeGrapheme information
-  // $scope.dummyWord = "policeman";
-  // $scope.dummyArray = $scope.dummyWord.split("");
-  // var dummyArray = $scope.dummyArray;
-  // console.log($scope.dummyArray);
-  //
-  // $scope.targetGrapheme = "ice";
-  // $scope.splitGrapheme = $scope.targetGrapheme.split("");
-  // var splitGraph = $scope.splitGrapheme;
-  // console.log($scope.splitGrapheme);
-  //
-  // var Graph = $scope.targetGrapheme;
-  // var Word = $scope.dummyWord;
-  // console.log(Graph, Word);
-
-  // placeGrapheme function
-  $scope.targetWord = correctWord;
-  $scope.targetArray = $scope.targetWord.split("");
-  var targetArray = $scope.targetArray;
-  console.log($scope.targetArray);
-
-  $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
-  $scope.splitGrapheme = $scope.targetGrapheme.split("");
-  var splitGraph = $scope.splitGrapheme;
-  console.log($scope.splitGrapheme);
-
-  var Graph = $scope.targetGrapheme;
-  console.log(Graph, correctWord);
-  var graphemeIndex = correctWord.indexOf(Graph);
-  console.log(graphemeIndex);
-
-  $scope.placeGrapheme = function(){
-    var domArray = [];
+  function placeGrapheme(){
     j = 0;
     for (var i = 0; i < targetArray.length; i++) {
       if(i >= graphemeIndex && i <= (graphemeIndex + (Graph.length - 1))){
-        domArray.push(splitGraph[j]);
+        $scope.placedWord.push(splitGraph[j]);
         j++;
       } else {
-        domArray.push("_");
+        $scope.placedWord.push("_");
       }
     }
-    $scope.domArray = domArray;
-    console.log($scope.domArray);
+    // console.log($scope.placedWord);
   }; // end placeGrapheme function
 
 }]); // end controller
