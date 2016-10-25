@@ -1,6 +1,6 @@
 myApp.factory('SpellingFactory', [function(){
   var objectIn = {};
-  
+
   var storeObject = function(object){
     objectIn = object;
   }
@@ -52,6 +52,6 @@ myApp.factory('SpellingFactory', [function(){
     },
     checkSpelling: checkSpelling,
     displayWord: displayWord
-  }
+  };
 
 }]);
