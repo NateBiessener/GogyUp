@@ -6,8 +6,6 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   var dataIn = window.parent.stuff;
 
   // spellcheck dummy words
-  $scope.enteredWord = 'especially';
-  console.log($scope.enteredWord);
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
@@ -16,6 +14,7 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   $scope.placeLetter = function(letter){
     console.log('in placeLetter');
     $scope.placedWord += letter;
+    console.log($scope.placedWord);
   }; // end placeLetter function
 
   // displayWord function
@@ -56,8 +55,9 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   // spellchecking function
   $scope.checkSpelling = function(){
     console.log('in $scope.checkSpelling');
+    console.log($scope.correctWord);
 
-    if($scope.enteredWord === $scope.correctWord){
+    if($scope.placedWord === $scope.correctWord){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
