@@ -6,7 +6,7 @@ myApp.controller('mainController', ['$scope', function($scope){
   $scope.getRidOfMe = function(){
     appMgr.setActivityComplete();
   };
-}])
+}]);
 // angular routing
 myApp.config(['$routeProvider', function($routeProvider){
 
