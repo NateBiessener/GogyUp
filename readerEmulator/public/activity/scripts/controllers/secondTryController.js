@@ -4,9 +4,6 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
   $scope.correctWord = window.parent.stuff.word.fullWord;
 
   $scope.allLetter = SpellingFactory.displayWord();
-  // spellcheck dummy words
-  $scope.comparisonWord = 'crap';
-  console.log($scope.anotherWord);
 
   $scope.underline = "";
   $scope.displayUnderline = function(){
@@ -31,22 +28,19 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
   };// end removeLetter
 
   // spellchecking function
-  $scope.checkSpelling = function(){
+  $scope.checkSpelling = function(placedWord){
     console.log('in $scope.checkSpelling');
-
-    if($scope.enteredWord === $scope.comparisonWord){
-      $scope.hideGame = true;
+    console.log(placedWord);
+    console.log($scope.correctWord);
+    placedWord = placedWord.reduce(function(start, index){
+      return start + index;
+    });
+    if(placedWord === $scope.correctWord){
       $scope.correctAnswer = true;
     } else {
-      $scope.hideGame = true;
       $scope.incorrectAnswer = true;
     }
 
   }; // end checkSpelling function
-
-  // array to repeat over to create first hint
-  $scope.testWord = "bear";
-  $scope.spacesArray = $scope.testWord.split("");
-  console.log($scope.spacesArray);
 
 }]); // end controller
