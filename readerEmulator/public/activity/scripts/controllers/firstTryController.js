@@ -1,14 +1,15 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
-myApp.controller('firstTryController', ['$scope', function($scope){
+myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in firstTryController');
-  
+
   console.log(window.parent.stuff.word.fullWord);
-  var dataIn = window.parent.stuff;
-
+  // var dataIn = window.parent.stuff;
+  SpellingFactory.storeObject(window.parent.stuff);
   // spellcheck dummy words
-  $scope.correctWord = dataIn.word.fullWord;
-  console.log($scope.correctWord);
-
+  $scope.enteredWord = 'especially';
+  console.log($scope.enteredWord);
+  $scope.correctWord = SpellingFactory.loadObject().word.fullWord;
+  // console.log($scope.correctWord);
 
   $scope.placedWord = "";
   // placeLetter function
@@ -55,8 +56,8 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   // spellchecking function
   $scope.checkSpelling = function(){
     console.log('in $scope.checkSpelling');
-
-    if($scope.enteredWord === $scope.correctWord){
+    console.log();
+    if(true){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {

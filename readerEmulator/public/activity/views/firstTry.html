@@ -4,7 +4,9 @@
 <div>
   <div ng-controller="firstTryController">
 <div ng-init="displayWord()"></div>
-{{placedWord}}
+<div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px; border: 1px solid black">
+  {{letter}}
+</div>
 <div ng-repeat="letter in allLetter track by $index">
   <p ng-click="placeLetter(letter)">{{letter}}</p></div>
 </div>
