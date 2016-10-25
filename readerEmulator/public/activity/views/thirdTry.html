@@ -2,6 +2,8 @@
 style="display: inline">
   <p>{{letter}}</p>
 </div> -->
+<div ng-init="displayGrapheme()"><div>
+{{showHint}}
 <div ng-init="displayUnderline()"><div>
   <p>{{underline}}</p>
 <div ng-repeat="letter in allLetter track by $index" style="display: inline;">
