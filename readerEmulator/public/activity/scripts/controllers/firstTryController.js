@@ -35,10 +35,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       return start + index;
     });
     if(placedWord === $scope.correctWord){
-      $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
-      $scope.hideGame = true;
       $scope.incorrectAnswer = true;
     }
 
