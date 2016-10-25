@@ -1,16 +1,14 @@
 <div ng-init="displayPlacement()">
   <div>{{}}</div>
 </div>
-<div>
-  <div ng-controller="firstTryController">
-<div ng-init="displayWord()"></div>
-{{placedWord}}
-<div ng-repeat="letter in allLetter track by $index">
-  <p ng-click="placeLetter(letter)">{{letter}}</p></div>
-</div>
-  <div ng-hide="hideGame">TEST</div>
-  <div ng-show="correctAnswer">Great job!</div>
-  <div ng-show="incorrectAnswer">Try again!</div>
-  <button ng-click="checkSpelling()">Check Spelling</button>
-  <a href="#secondTry">Second Screen for Testing</a>
+<div ng-controller="firstTryController">
+  <div ng-init="displayWord()"></div>
+  {{placedWord}}
+  <div ng-repeat="letter in allLetter track by $index">
+    <p ng-click="placeLetter(letter)">{{letter}}</p></div>
+    <div ng-hide="hideGame">TEST</div>
+    <div ng-show="correctAnswer">Great job!</div>
+    <div ng-show="incorrectAnswer">Try again!</div>
+    <button ng-click="checkSpelling(placedWord)">Check Spelling</button>
+    <a href="#secondTry">Second Screen for Testing</a>
 </div>

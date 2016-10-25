@@ -1,7 +1,7 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
 myApp.controller('firstTryController', ['$scope', function($scope){
   console.log('in firstTryController');
-  
+
   console.log(window.parent.stuff.word.fullWord);
   var dataIn = window.parent.stuff;
 
@@ -9,12 +9,12 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
-
   $scope.placedWord = "";
   // placeLetter function
   $scope.placeLetter = function(letter){
     console.log('in placeLetter');
     $scope.placedWord += letter;
+    console.log($scope.placedWord);
   }; // end placeLetter function
 
   // displayWord function
@@ -53,10 +53,12 @@ myApp.controller('firstTryController', ['$scope', function($scope){
   }; // end displayWord function
 
   // spellchecking function
-  $scope.checkSpelling = function(){
+  $scope.checkSpelling = function(placedWord){
     console.log('in $scope.checkSpelling');
+    console.log(placedWord);
+    console.log($scope.correctWord);
 
-    if($scope.enteredWord === $scope.correctWord){
+    if(placedWord === $scope.correctWord){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
