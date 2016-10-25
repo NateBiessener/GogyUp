@@ -9,33 +9,32 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
-//   $scope.grapheme = window.parent.stuff.graphemeToLearn;
-//   console.log($scope.grapheme);
-//   var graphemeIndex = correctWord.indexOf($scope.grapheme);
-// console.log(graphemeIndex);
-// var space = "";
-// $scope.underline = "";
-// $scope.displayUnderline = function(){
-//   for(var i = 0; i < correctWord.length; i++){
-//     $scope.underline += "_ ";
-//   }
-// };
-//   $scope.displayGrapheme = function(){
-//     for(var i = 0;i < graphemeIndex; i++){
-//     space += " ";
-//     }
-//     console.log("p"+ space + "p");
-//     $scope.showHint = space+ $scope.grapheme;
-//   };
-  // spellchecking function
-  $scope.checkSpelling = function(){
-    console.log('in $scope.checkSpelling');
+  // $scope.placedWord = [];
+  // for (var i = 0; i < $scope.correctWord.length; i++) {
+  //   $scope.placedWord.push('_');
+  // }
 
-    if($scope.enteredWord === $scope.anotherWord){
-      $scope.hideGame = true;
+  $scope.placeLetter = function(letter){
+    console.log('in placeLetter');
+    $scope.placedWord[$scope.placedWord.indexOf('_')] = letter;
+    console.log($scope.placedWord);
+  }; // end placeLetter function
+
+  $scope.removeLetter = function(index){
+    $scope.placedWord[index] = '_';
+  };// end removeLetter
+
+  // spellchecking function
+  $scope.checkSpelling = function(placedWord){
+    console.log('in $scope.checkSpelling');
+    console.log(placedWord);
+    console.log($scope.correctWord);
+    placedWord = placedWord.reduce(function(start, index){
+      return start + index;
+    });
+    if(placedWord === $scope.correctWord){
       $scope.correctAnswer = true;
     } else {
-      $scope.hideGame = true;
       $scope.incorrectAnswer = true;
     }
 

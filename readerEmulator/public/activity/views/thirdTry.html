@@ -1,14 +1,18 @@
-<!-- <div class="firstHint" ng-repeat="letter in domArray track by $index"
+
+<div ng-init="displayWord()"></div>
+<div class="firstHint" ng-repeat="letter in domArray track by $index"
 style="display: inline">
   <p>{{letter}}</p>
-</div> -->
-<div ng-init="displayGrapheme()"><div>
-{{showHint}}
-<div ng-init="displayUnderline()"><div>
-  <p>{{underline}}</p>
-<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
-  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p></div>
 </div>
+<div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px;">
+  <p ng-click="removeLetter($index)" style="display: inline;">{{letter}}</p>
+</div>
+<br>
+<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
+  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p>
+</div>
+<div ng-show="correctAnswer">Great job!</div>
+<div ng-show="incorrectAnswer">Try again!</div>
+<a ng-if="incorrectAnswer" href="#thirdTry">Next Try</a>
+<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord)">Check Spelling</button>
 <button ng-click="placeGrapheme()">Press Button for Grapheme Placement</button>
-<div ng-repeat="lines in domArray track by $index" style="display: inline;">
-  {{lines}}
