@@ -6,8 +6,7 @@
 <div ng-repeat="letter in allLetter track by $index" style="display: inline;">
   <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p>
 </div>
-<div ng-hide="hideGame">TEST</div>
 <div ng-show="correctAnswer">Great job!</div>
 <div ng-show="incorrectAnswer">Try again!</div>
-<button ng-click="checkSpelling(placedWord)">Check Spelling</button>
-<a href="#thirdTry">Third Screen for Testing</a>
+<a ng-if="incorrectAnswer" href="#thirdTry">Next Try</a>
+<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord)">Check Spelling</button>

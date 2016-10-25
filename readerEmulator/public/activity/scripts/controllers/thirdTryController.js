@@ -20,13 +20,13 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
 //     $scope.underline += "_ ";
 //   }
 // };
-  // $scope.displayGrapheme = function(){
-  //   for(var i = 0;i < graphemeIndex; i++){
-  //   space += " ";
-  //   }
-  //   console.log("p"+ space + "p");
-  //   $scope.showHint = space+ $scope.grapheme;
-  // };
+//   $scope.displayGrapheme = function(){
+//     for(var i = 0;i < graphemeIndex; i++){
+//     space += " ";
+//     }
+//     console.log("p"+ space + "p");
+//     $scope.showHint = space+ $scope.grapheme;
+//   };
   // spellchecking function
   $scope.checkSpelling = function(){
     console.log('in $scope.checkSpelling');
@@ -42,24 +42,29 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   }; // end checkSpelling function
 
   // start placeGrapheme information
-  $scope.dummyWord = "policeman";
-  $scope.dummyArray = $scope.dummyWord.split("");
-  var dummyArray = $scope.dummyArray;
-  console.log($scope.dummyArray);
-
-  $scope.targetGrapheme = "ice";
-  $scope.splitGrapheme = $scope.targetGrapheme.split("");
-  var splitGraph = $scope.splitGrapheme;
-  console.log($scope.splitGrapheme);
-
-  var Graph = $scope.targetGrapheme;
-  var Word = $scope.dummyWord;
-  console.log(Graph, Word);
-
-  var graphemeIndex = Word.indexOf(Graph);
-  console.log(graphemeIndex);
+  // $scope.dummyWord = "policeman";
+  // $scope.dummyArray = $scope.dummyWord.split("");
+  // var dummyArray = $scope.dummyArray;
+  // console.log($scope.dummyArray);
+  //
+  // $scope.targetGrapheme = "ice";
+  // $scope.splitGrapheme = $scope.targetGrapheme.split("");
+  // var splitGraph = $scope.splitGrapheme;
+  // console.log($scope.splitGrapheme);
+  //
+  // var Graph = $scope.targetGrapheme;
+  // var Word = $scope.dummyWord;
+  // console.log(Graph, Word);
+  //
+  // var graphemeIndex = Word.indexOf(Graph);
+  // console.log(graphemeIndex);
 
   // placeGrapheme function
+    $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
+    console.log($scope.targetGrapheme);
+    $scope.targetArray = $scope.correctWord.split("");
+    var graphemeIndex = correctWord.indexOf($scope.grapheme);
+  console.log(graphemeIndex);
   $scope.placeGrapheme = function(){
     var domArray = [];
     j = 0;
