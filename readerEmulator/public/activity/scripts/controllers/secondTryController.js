@@ -1,12 +1,13 @@
-myApp.controller('secondTryController', ['$scope', function($scope){
+myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in secondTryController');
 
   var correctWord = window.parent.stuff.word.fullWord;
 
+  $scope.allLetter = SpellingFactory.displayWord();
   // spellcheck dummy words
   $scope.comparisonWord = 'crap';
   console.log($scope.anotherWord);
-  
+
   $scope.underline = "";
   $scope.displayUnderline = function(){
     for(var i = 0; i < correctWord.length; i++){

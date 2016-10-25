@@ -1,6 +1,6 @@
 myApp.factory('SpellingFactory', [function(){
   var objectIn = {};
-
+  
   var storeObject = function(object){
     objectIn = object;
   }

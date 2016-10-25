@@ -1,9 +1,10 @@
-myApp.controller('thirdTryController', ['$scope', function($scope){
+myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in thirdTryController');
 
   console.log(window.parent.stuff.word.fullWord);
   var dataIn = window.parent.stuff;
 
+  $scope.allLetter = SpellingFactory.displayWord();
   // spellcheck
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);

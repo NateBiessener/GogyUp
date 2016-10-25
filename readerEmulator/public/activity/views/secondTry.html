@@ -3,4 +3,7 @@
 <div ng-repeat="letter in spacesArray track by $index">
   <p>_</p>
 </div>
+<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
+  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p></div>
+</div>
 <a href="#thirdTry">Third Screen for Testing</a>

@@ -19,8 +19,7 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   }; // end placeLetter function
 
   // displayWord function
-  $scope.allLetter= SpellingFactory.displayWord();
-
+  $scope.allLetter = SpellingFactory.displayWord();
 
   // spellchecking function
   $scope.checkSpelling = function(){
