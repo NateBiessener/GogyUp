@@ -3,9 +3,7 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
-  var dataIn = window.parent.stuff;
 
-  // var dataIn = window.parent.stuff;
   SpellingFactory.storeObject(window.parent.stuff);
   // spellcheck dummy words
 
