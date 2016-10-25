@@ -11,13 +11,17 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
 
   $scope.correctWord = SpellingFactory.loadObject().word.fullWord;
 
-  $scope.placedWord = "";
+  $scope.placedWord = [];
   // placeLetter function
   $scope.placeLetter = function(letter){
     console.log('in placeLetter');
-    $scope.placedWord += letter;
+    $scope.placedWord.push(letter);
     console.log($scope.placedWord);
   }; // end placeLetter function
+
+  $scope.removeLetter = function(index){
+    $scope.placedWord.splice(index, 1);
+  };// end removeLetter
 
   // displayWord function
   $scope.allLetter = SpellingFactory.displayWord();
@@ -27,7 +31,9 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
     console.log('in $scope.checkSpelling');
     console.log(placedWord);
     console.log($scope.correctWord);
-
+    placedWord = placedWord.reduce(function(start, index){
+      return start + index;
+    });
     if(placedWord === $scope.correctWord){
       $scope.hideGame = true;
       $scope.correctAnswer = true;

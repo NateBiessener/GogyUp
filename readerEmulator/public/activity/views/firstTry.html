@@ -1,7 +1,7 @@
 <div ng-controller="firstTryController">
   <div ng-init="displayWord()"></div>
   <div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px; border: 1px solid black">
-    {{letter}}
+    <a ng-click="removeLetter($index)">{{letter}}</a>
   </div>
   <br>
   <div ng-repeat="letter in allLetter track by $index" style="display: inline;">
