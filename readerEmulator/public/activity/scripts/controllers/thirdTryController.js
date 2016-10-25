@@ -55,20 +55,26 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   // var Graph = $scope.targetGrapheme;
   // var Word = $scope.dummyWord;
   // console.log(Graph, Word);
-  //
-  // var graphemeIndex = Word.indexOf(Graph);
-  // console.log(graphemeIndex);
 
   // placeGrapheme function
-    $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
-    console.log($scope.targetGrapheme);
-    $scope.targetArray = $scope.correctWord.split("");
-    var graphemeIndex = correctWord.indexOf($scope.grapheme);
+  $scope.targetWord = correctWord;
+  $scope.targetArray = $scope.targetWord.split("");
+  var targetArray = $scope.targetArray;
+  console.log($scope.targetArray);
+  $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
+  $scope.splitGrapheme = $scope.targetGrapheme.split("");
+  var splitGraph = $scope.splitGrapheme;
+  console.log($scope.splitGrapheme);
+  //
+  var Graph = $scope.targetGrapheme;
+  console.log(Graph, correctWord);
+  var graphemeIndex = correctWord.indexOf(Graph);
   console.log(graphemeIndex);
+
   $scope.placeGrapheme = function(){
     var domArray = [];
     j = 0;
-    for (var i = 0; i < dummyArray.length; i++) {
+    for (var i = 0; i < targetArray.length; i++) {
       if(i >= graphemeIndex && i <= (graphemeIndex + (Graph.length - 1))){
         domArray.push(splitGraph[j]);
         j++;

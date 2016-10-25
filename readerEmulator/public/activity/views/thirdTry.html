@@ -10,3 +10,5 @@ style="display: inline">
   <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p></div>
 </div>
 <button ng-click="placeGrapheme()">Press Button for Grapheme Placement</button>
+<div ng-repeat="lines in domArray track by $index" style="display: inline;">
+  {{lines}}
