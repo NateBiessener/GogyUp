@@ -7,7 +7,7 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
   // spellcheck dummy words
   $scope.comparisonWord = 'crap';
   console.log($scope.anotherWord);
-
+//underlineHint function
   $scope.underline = "";
   $scope.displayUnderline = function(){
     for(var i = 0; i < correctWord.length; i++){

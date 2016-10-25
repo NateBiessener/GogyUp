@@ -1,8 +1,6 @@
 <div ng-init="displayUnderline()"><div>
-  {{underline}}
-<div ng-repeat="letter in spacesArray track by $index">
-  <p>_</p>
-</div>
+  <p>{{underline}}</p>
+
 <div ng-repeat="letter in allLetter track by $index" style="display: inline;">
   <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p></div>
 </div>

@@ -1,7 +1,9 @@
-<div class="firstHint" ng-repeat="letter in domArray track by $index"
+<!-- <div class="firstHint" ng-repeat="letter in domArray track by $index"
 style="display: inline">
   <p>{{letter}}</p>
-</div>
+</div> -->
+<div ng-init="displayUnderline()"><div>
+  <p>{{underline}}</p>
 <div ng-repeat="letter in allLetter track by $index" style="display: inline;">
   <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p></div>
 </div>

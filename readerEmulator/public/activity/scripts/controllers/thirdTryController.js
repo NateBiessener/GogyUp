@@ -3,12 +3,21 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
 
   console.log(window.parent.stuff.word.fullWord);
   var dataIn = window.parent.stuff;
-
+  var correctWord = window.parent.stuff.word.fullWord;
   $scope.allLetter = SpellingFactory.displayWord();
   // spellcheck
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
+  $scope.underline = "";
+//underline hint function
+  $scope.displayUnderline = function(){
+    for(var i = 0; i < correctWord.length; i++){
+      $scope.underline += "_ ";
+    }
+  };
+  var grapheme = correctWord.indexOf("ea");
+  console.log(grapheme);
   // spellchecking function
   $scope.checkSpelling = function(){
     console.log('in $scope.checkSpelling');
