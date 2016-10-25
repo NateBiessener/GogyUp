@@ -12,6 +12,5 @@ style="display: inline">
   <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p>
 </div>
 <div ng-show="correctAnswer">Great job!</div>
-<div ng-show="incorrectAnswer">Try again!</div>
-<a ng-if="incorrectAnswer" href="#thirdTry">Next Try</a>
+<div ng-if="incorrectAnswer">Correct spelling: {{correctWord}}</div>
 <button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord)">Check Spelling</button>
