@@ -1,12 +1,11 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
 myApp.controller('firstTryController', ['$scope', function($scope){
   console.log('in firstTryController');
+  
   console.log(window.parent.stuff.word.fullWord);
   var dataIn = window.parent.stuff;
 
   // spellcheck dummy words
-  $scope.enteredWord = 'especially';
-  console.log($scope.enteredWord);
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 

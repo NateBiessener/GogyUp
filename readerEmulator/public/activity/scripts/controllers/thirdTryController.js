@@ -1,11 +1,12 @@
 myApp.controller('thirdTryController', ['$scope', function($scope){
   console.log('in thirdTryController');
 
-  // spellcheck dummy words
-  $scope.enteredWord = 'especially';
-  console.log($scope.enteredWord);
-  $scope.anotherWord = 'crap';
-  console.log($scope.anotherWord);
+  console.log(window.parent.stuff.word.fullWord);
+  var dataIn = window.parent.stuff;
+
+  // spellcheck
+  $scope.correctWord = dataIn.word.fullWord;
+  console.log($scope.correctWord);
 
   // spellchecking function
   $scope.checkSpelling = function(){

@@ -1,15 +1,16 @@
 myApp.controller('secondTryController', ['$scope', function($scope){
   console.log('in secondTryController');
-var correctWord = window.parent.stuff.word.fullWord;
+
+  var correctWord = window.parent.stuff.word.fullWord;
+
   // spellcheck dummy words
-  $scope.enteredWord = 'especially';
-  console.log($scope.enteredWord);
   $scope.comparisonWord = 'crap';
   console.log($scope.anotherWord);
- $scope.underline = "";
+  
+  $scope.underline = "";
   $scope.displayUnderline = function(){
     for(var i = 0; i < correctWord.length; i++){
-$scope.underline += "_ ";
+      $scope.underline += "_ ";
     }
   };
 
