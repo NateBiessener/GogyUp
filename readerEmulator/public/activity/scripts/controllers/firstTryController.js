@@ -1,25 +1,15 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
-myApp.controller('firstTryController', ['$scope', function($scope){
+myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
-  var dataIn = window.parent.stuff;
-
+  // var dataIn = window.parent.stuff;
+  SpellingFactory.storeObject(window.parent.stuff);
   // spellcheck dummy words
   $scope.enteredWord = 'especially';
   console.log($scope.enteredWord);
-  $scope.correctWord = dataIn.word.fullWord;
-  console.log($scope.correctWord);
-
-  // displayPlacement function
-  // $scope.displayPlacement = function(){
-  //   console.log("in displayPlacement");
-  //   var inputArray = [];
-  //   for(var i = 0; i < $scope.correctWord.length; i++){
-  //     inputArray.push("");
-  //   }
-  //   $scope.displayInput = inputArray;
-  // }; // end displayPlacement function
+  $scope.correctWord = SpellingFactory.loadObject().word.fullWord;
+  // console.log($scope.correctWord);
 
   $scope.placedWord = "";
   // placeLetter function
@@ -62,12 +52,12 @@ myApp.controller('firstTryController', ['$scope', function($scope){
     shuffle(wordArray);
     $scope.allLetter= wordArray;
   }; // end displayWord function
-
+  
   // spellchecking function
   $scope.checkSpelling = function(){
     console.log('in $scope.checkSpelling');
-
-    if($scope.enteredWord === $scope.correctWord){
+    console.log();
+    if(true){
       $scope.hideGame = true;
       $scope.correctAnswer = true;
     } else {
