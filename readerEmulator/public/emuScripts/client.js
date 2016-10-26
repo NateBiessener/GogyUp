@@ -31,7 +31,7 @@ $(document).ready(function(){
   $('body').on('click', '#grease', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": undefined,  // if populated, used to load activity state through API
+      "activityTitle": 'grease_1',
   	  "word": {
 		    "fullWord": $(this).html(),
 		    "graphemes": ['g', 'r', 'ea', 'se']   // ie. [“c”, “a”, “t”]
@@ -44,7 +44,7 @@ $(document).ready(function(){
   $('body').on('click', '#these', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": undefined,  // if populated, used to load activity state through API
+      "activityTitle": 'these_1',
   	  "word": {
 		    "fullWord": $(this).html(),
 		    "graphemes": ['th','e','se']   // ie. [“c”, “a”, “t”]
@@ -57,7 +57,7 @@ $(document).ready(function(){
   $('body').on('click', '#piece', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": undefined,  // if populated, used to load activity state through API
+      "activityTitle": 'piece_1',
   	  "word": {
 		    "fullWord": $(this).html(),
 		    "graphemes": ['p','ie','ce']   // ie. [“c”, “a”, “t”]
@@ -70,7 +70,7 @@ $(document).ready(function(){
   $('body').on('click', '#seem', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": undefined,  // if populated, used to load activity state through API
+      "activityTitle": 'seem_1',
   	  "word": {
 		    "fullWord": $(this).html(),
 		    "graphemes": ['s','ee','m']   // ie. [“c”, “a”, “t”]
