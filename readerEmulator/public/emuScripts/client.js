@@ -93,6 +93,7 @@ $(document).ready(function(){
     //******************CHANGE THESE TO WHATEVER THEY NEED TO BE*********************//
     activity.attr('height', '600px');
     activity.attr('width', '400px');
+    activity.attr('style', 'position: fixed; z-index: 1; left: 5px; top: 5px; background-color: #fff;')
     //attach iframe to DOM
     $('body').append(activity);
   }
