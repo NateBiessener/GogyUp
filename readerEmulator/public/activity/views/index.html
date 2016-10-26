@@ -5,16 +5,29 @@
     <title>GogyUp</title>
     <script src="../vendors/angular.min.js"></script>
     <script src="../vendors/angular-route.min.js"></script>
+    <script src="../vendors/jquery-3.1.0.min.js" charset="utf-8"></script>
+    <script src="../vendors/jquery-ui.min.js" charset="utf-8"></script>
+    <script src="../vendors/jquery.lettering-0.6.1.min.js" charset="utf-8"></script>
+    <script src="../scripts/styleScript.js" charset="utf-8"></script>
     <script src="../scripts/client.js" charset="utf-8"></script>
     <script src="../scripts/controllers/firstTryController.js" charset="utf-8"></script>
     <script src="../scripts/controllers/secondTryController.js" charset="utf-8"></script>
     <script src="../scripts/controllers/thirdTryController.js" charset="utf-8"></script>
     <script src="../scripts/factories/SpellingFactory.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../vendors/jquery-ui.min.css">
+    <link rel="stylesheet" href="../styles/foundation.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
   </head>
   <body ng-controller="mainController">
-      <button type="button" ng-click="getRidOfMe()">Close this window</button>
-      <div ng-init="displaySentence()"><div>
-        {{showSentence}}
+      <div ng-init="displaySentence()" class="container">
+        <div id='close' type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
+        <div class="data-sentence"><h3>{{showSentence}}<h3></div>
+        <div class="button-container">
+          <button class="play-word"><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;Word</button>
+          <button class="play-sentence"><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;Sentence</button>
+        </div>
+      </div>
       <main ng-view></main>
   </body>
 </html>

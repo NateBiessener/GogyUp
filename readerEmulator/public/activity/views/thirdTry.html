@@ -1,10 +1,14 @@
 <div ng-init="displayWord()"></div>
-<div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px;">
-  <p ng-click="removeLetter($index)" style="display: inline;">{{letter}}</p>
+<div class="playing-field">
+  <!-- <canvas id="canvas"> -->
+    <div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px;">
+      <p ng-click="removeLetter($index)" style="display: inline;">{{letter}}</p>
+    </div>
+  <!-- </canvas> -->
 </div>
 <br>
-<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
-  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p>
+<div ng-repeat="letter in allLetter track by $index" ng-click="placeLetter(letter)" class="data-tiles">
+  {{letter}}
 </div>
 <div ng-show="correctAnswer">Great job!</div>
 <div ng-if="incorrectAnswer">Correct spelling: {{correctWord}}</div>
