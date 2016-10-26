@@ -46,6 +46,7 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){
         console.log(true);
+        
       }
       }
 

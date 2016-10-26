@@ -9,4 +9,4 @@
 <div ng-show="correctAnswer">Great job!</div>
 <div ng-show="incorrectAnswer">Try again!</div>
 <a ng-if="incorrectAnswer" href="#secondTry">Next Try</a>
-<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" ng-class="{'green': correctPlacement == true}">Check Spelling</button>
+<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)">Check Spelling</button>
