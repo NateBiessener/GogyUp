@@ -3,20 +3,22 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
-
+  //send dataIn to Factory
   SpellingFactory.storeObject(window.parent.stuff);
   // spellcheck dummy words
+  //pull dataIn back from Factory
+  var dataIn = SpellingFactory.loadObject();
 
-  $scope.correctWord = SpellingFactory.loadObject().word.fullWord;
+  $scope.correctWord = dataIn.word.fullWord;
 
   $scope.placedWord = [];
-  // placeLetter function
+  // placeLetter function adds clicked letter to playing field
   $scope.placeLetter = function(letter){
     console.log('in placeLetter');
     $scope.placedWord.push(letter);
     console.log($scope.placedWord);
   }; // end placeLetter function
-
+  //removes clicked letter from playing field
   $scope.removeLetter = function(index){
     $scope.placedWord.splice(index, 1);
   };// end removeLetter

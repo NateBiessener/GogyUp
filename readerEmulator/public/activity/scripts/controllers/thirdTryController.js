@@ -1,40 +1,36 @@
 myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in thirdTryController');
 
-  console.log(window.parent.stuff.word.fullWord);
-  var dataIn = window.parent.stuff;
-  var correctWord = window.parent.stuff.word.fullWord;
   $scope.allLetter = SpellingFactory.displayWord();
-  // spellcheck
+  // pull dataIn from Factory
+  var dataIn = SpellingFactory.loadObject();
+
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
-  $scope.targetWord = correctWord;
+  $scope.targetWord = $scope.correctWord;
   $scope.targetArray = $scope.targetWord.split("");
   var targetArray = $scope.targetArray;
   console.log($scope.targetArray);
-  $scope.targetGrapheme = window.parent.stuff.graphemeToLearn;
+  $scope.targetGrapheme = dataIn.graphemeToLearn;
   $scope.splitGrapheme = $scope.targetGrapheme.split("");
   var splitGraph = $scope.splitGrapheme;
   console.log($scope.splitGrapheme);
   //
   var Graph = $scope.targetGrapheme;
-  console.log(Graph, correctWord);
-  var graphemeIndex = correctWord.indexOf(Graph);
+  console.log(Graph, $scope.correctWord);
+  var graphemeIndex = $scope.correctWord.indexOf(Graph);
   console.log(graphemeIndex);
 
   $scope.placedWord = [];
   placeGrapheme();
-  // for (var i = 0; i < $scope.correctWord.length; i++) {
-  //   $scope.placedWord.push('_');
-  // }
-
+  //looks for first '_' in playing field and replaces with clicked letter
   $scope.placeLetter = function(letter){
     console.log('in placeLetter');
     $scope.placedWord[$scope.placedWord.indexOf('_')] = letter;
     console.log($scope.placedWord);
   }; // end placeLetter function
-
+  //removes the clicked letter from the playing field
   $scope.removeLetter = function(index){
     $scope.placedWord[index] = '_';
   };// end removeLetter
