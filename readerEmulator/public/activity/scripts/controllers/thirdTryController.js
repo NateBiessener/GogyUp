@@ -55,20 +55,7 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
 
   }; // end checkSpelling function
 
-  // start placeGrapheme information
-  // $scope.dummyWord = "policeman";
-  // $scope.dummyArray = $scope.dummyWord.split("");
-  // var dummyArray = $scope.dummyArray;
-  // console.log($scope.dummyArray);
-  //
-  // $scope.targetGrapheme = "ice";
-  // $scope.splitGrapheme = $scope.targetGrapheme.split("");
-  // var splitGraph = $scope.splitGrapheme;
-  // console.log($scope.splitGrapheme);
-  //
-  // var Graph = $scope.targetGrapheme;
-  // var Word = $scope.dummyWord;
-  // console.log(Graph, Word);
+
 
   // placeGrapheme function
 
@@ -84,6 +71,6 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
       }
     }
     // console.log($scope.placedWord);
-  }; // end placeGrapheme function
+  } // end placeGrapheme function
 
 }]); // end controller
