@@ -2,18 +2,6 @@ var myApp = angular.module('myApp', ['ngRoute']);
 
 var appMgr = window.parent.g_appMgr;
 
-myApp.controller('mainController', ['$scope', function($scope){
-  var sentence = window.parent.stuff.sentence;
-  var word = window.parent.stuff.word.fullWord;
-  console.log(sentence);
-  $scope.displaySentence = function(){
-    $scope.showSentence = sentence.replace(word,"_______");
-  };
-  console.log($scope.displaySentence);
-  $scope.getRidOfMe = function(){
-    appMgr.setActivityComplete();
-  };
-}]);
 // angular routing
 myApp.config(['$routeProvider', function($routeProvider){
 
@@ -34,3 +22,21 @@ myApp.config(['$routeProvider', function($routeProvider){
       redirectTo: '/firstTry'
     });
 }]); // end angular routing
+
+myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', function($scope, $location, SpellingFactory){
+  //send dataIn to Factory
+  SpellingFactory.storeObject(window.parent.stuff);
+  appMgr.dataLoad(window.parent.stuff.activityTitle, function(data){
+    console.log(data);
+  });
+  var sentence = window.parent.stuff.sentence;
+  var word = window.parent.stuff.word.fullWord;
+  console.log(sentence);
+  $scope.displaySentence = function(){
+    $scope.showSentence = sentence.replace(word,"_______");
+  };
+  console.log($scope.displaySentence);
+  $scope.getRidOfMe = function(){
+    appMgr.setActivityComplete();
+  };
+}]);

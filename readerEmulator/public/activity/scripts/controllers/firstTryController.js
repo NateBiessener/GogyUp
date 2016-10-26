@@ -3,10 +3,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
-  //send dataIn to Factory
-  SpellingFactory.storeObject(window.parent.stuff);
-  // spellcheck dummy words
-  //pull dataIn back from Factory
+
+  //pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();
 
   $scope.correctWord = dataIn.word.fullWord;
