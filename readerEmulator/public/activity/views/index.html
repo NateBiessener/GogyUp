@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>GogyUp</title>
+    <script src="../vendors/angular.min.js"></script>
+    <script src="../vendors/angular-route.min.js"></script>
+    <script src="../scripts/client.js" charset="utf-8"></script>
+    <script src="../scripts/controllers/firstTryController.js" charset="utf-8"></script>
+    <script src="../scripts/controllers/secondTryController.js" charset="utf-8"></script>
+    <script src="../scripts/controllers/thirdTryController.js" charset="utf-8"></script>
+    <script src="../scripts/factories/SpellingFactory.js" charset="utf-8"></script>
+  </head>
+  <body ng-controller="mainController">
+      <button type="button" ng-click="getRidOfMe()">Close this window</button>
+      <div ng-init="displaySentence()"><div>
+        {{showSentence}}
+      <main ng-view></main>
+  </body>
+</html>

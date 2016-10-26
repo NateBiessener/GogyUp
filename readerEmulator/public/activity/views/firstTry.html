@@ -1,0 +1,12 @@
+<div ng-init="displayWord()"></div>
+<div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px; border: 1px solid black">
+  <a ng-click="removeLetter($index)">{{letter}}</a>
+</div>
+<br>
+<div ng-repeat="letter in allLetter track by $index" style="display: inline;">
+  <p ng-click="placeLetter(letter)" style="display: inline;">{{letter}}</p>
+</div>
+<div ng-show="correctAnswer">Great job!</div>
+<div ng-show="incorrectAnswer">Try again!</div>
+<a ng-if="incorrectAnswer" href="#secondTry">Next Try</a>
+<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord)">Check Spelling</button>
