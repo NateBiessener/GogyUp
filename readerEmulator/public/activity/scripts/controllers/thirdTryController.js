@@ -1,6 +1,8 @@
 myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in thirdTryController');
-
+  if (SpellingFactory.getDataOut().complete) {
+    $scope.incorrectAnswer = true;
+  }
   $scope.allLetter = SpellingFactory.displayWord();
   // pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();

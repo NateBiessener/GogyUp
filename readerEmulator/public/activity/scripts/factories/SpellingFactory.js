@@ -16,6 +16,10 @@ myApp.factory('SpellingFactory', [function(){
     sentenceTTSClicks: 0
   };
 
+  var setDataOut = function(object){
+    dataOut = object;
+  }
+
   var timeSave = function(timestamp) {
     if(!dataOut.attempts.attemptOne){
       dataOut.attempts.attemptOne = timestamp;
@@ -103,7 +107,8 @@ myApp.factory('SpellingFactory', [function(){
     setComplete: setComplete,
     setScore: setScore,
     finishTime: finishTime,
-    dataOut: function(){
+    setDataOut: setDataOut,
+    getDataOut: function(){
       return dataOut;
     }
   };

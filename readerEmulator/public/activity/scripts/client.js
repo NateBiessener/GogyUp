@@ -28,6 +28,14 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
   SpellingFactory.storeObject(window.parent.stuff);
   appMgr.dataLoad(window.parent.stuff.activityTitle, function(data){
     console.log(data);
+    if (data) {
+      SpellingFactory.setDataOut(data);
+      if (data.attempts.attemptTwo) {
+        $location.url('/thirdTry')
+      } else if (data.attempts.attemptOne) {
+        $location.url('/secondTry')
+      }
+    }
   });
   var sentence = window.parent.stuff.sentence;
   var word = window.parent.stuff.word.fullWord;
@@ -39,7 +47,7 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
   $scope.getRidOfMe = function(){
     var currentTime = Date.now();
     SpellingFactory.finishTime(currentTime);
-    var dataOut = SpellingFactory.dataOut();
+    var dataOut = SpellingFactory.getDataOut();
     appMgr.dataSave(dataOut.activityTitle, dataOut, function(){
       appMgr.setActivityComplete();
     });
