@@ -41,15 +41,13 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
     }
 
   }; // end checkSpelling function
-  $scope.correctPlacement=function(placedWord){
-    console.log(placedWord[0]);
+  $scope.correctPlacement = function(placedWord){
+    $scope.change = [];
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){
         console.log(true);
-        
+        $scope.change[i] = true;
       }
-      }
-
-
+    }
   };
 }]); // end controller
