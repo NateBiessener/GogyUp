@@ -1,7 +1,7 @@
 <div ng-init="displayWord()"></div>
 <div class="playing-field">
   <!-- <canvas id="canvas"> -->
-    <div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px;">
+    <div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px;" ng-class="{'changeBackground': change[$index]}">
       <p ng-click="removeLetter($index)" style="display: inline;">{{letter}}</p>
     </div>
   <!-- </canvas> -->
@@ -12,4 +12,4 @@
 </div>
 <div ng-show="correctAnswer">Great job!</div>
 <div ng-if="incorrectAnswer">Correct spelling: {{correctWord}}</div>
-<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord)" class="testButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
+<button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="testButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>

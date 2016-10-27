@@ -73,4 +73,13 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
     // console.log($scope.placedWord);
   } // end placeGrapheme function
 
+  $scope.correctPlacement = function(placedWord){
+    $scope.change = [];
+    for(var i = 0; i < $scope.correctWord.length; i++){
+      if(placedWord[i] == $scope.correctWord[i]){
+        console.log(true);
+        $scope.change[i] = true;
+      }
+    }
+  };
 }]); // end controller
