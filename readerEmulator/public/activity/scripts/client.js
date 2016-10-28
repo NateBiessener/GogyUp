@@ -24,6 +24,17 @@ myApp.config(['$routeProvider', function($routeProvider){
 }]); // end angular routing
 
 myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', function($scope, $location, SpellingFactory){
+
+  console.log(window.parent.stuff);
+
+  $scope.speakSentence = function(){
+    responsiveVoice.speak(window.parent.stuff.sentence);
+  };
+
+  $scope.speakWord = function(){
+    responsiveVoice.speak(window.parent.stuff.word.fullWord);
+  };
+
   //send dataIn to Factory
   SpellingFactory.storeObject(window.parent.stuff);
   appMgr.dataLoad(window.parent.stuff.activityTitle, function(data){
@@ -31,9 +42,9 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
     if (data) {
       SpellingFactory.setDataOut(data);
       if (data.attempts.attemptTwo) {
-        $location.url('/thirdTry')
+        $location.url('/thirdTry');
       } else if (data.attempts.attemptOne) {
-        $location.url('/secondTry')
+        $location.url('/secondTry');
       }
     }
   });
