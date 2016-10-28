@@ -44,6 +44,9 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
 
   // spellchecking function
   $scope.checkSpelling = function(placedWord){
+    placedWord = placedWord.map(function(index){
+      return index.letter;
+    });
     console.log('in $scope.checkSpelling');
     console.log(placedWord);
     console.log($scope.correctWord);
@@ -79,6 +82,9 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   } // end placeGrapheme function
 
   $scope.correctPlacement = function(placedWord){
+    placedWord = placedWord.map(function(index){
+      return index.letter;
+    });
     $scope.change = [];
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){
