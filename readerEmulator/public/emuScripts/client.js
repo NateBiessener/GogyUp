@@ -91,9 +91,9 @@ $(document).ready(function(){
     //source game file
     activity.attr('src', 'activity/views/index.html');
     //******************CHANGE THESE TO WHATEVER THEY NEED TO BE*********************//
-    activity.attr('height', '600px');
-    activity.attr('width', '400px');
-    activity.attr('style', 'position: fixed; z-index: 1; left: 5px; top: 5px; background-color: #fff;')
+    activity.attr('height', '100%');
+    activity.attr('width', '100%');
+    activity.attr('style', 'position: fixed; z-index: 1; top: 0; background-color: #fff;')
     //attach iframe to DOM
     $('body').append(activity);
   }
