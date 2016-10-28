@@ -1,8 +1,8 @@
 <div ng-init="displayWord()"></div>
 <div class="playing-field">
   <!-- <canvas id="canvas"> -->
-    <div ng-repeat="letter in placedWord track by $index" style="display: inline; margin: 2px; border: 1px solid black" ng-class="{'changeBackground': change[$index]}">
-      <a ng-click="removeLetter($index)">{{letter}}</a>
+    <div ng-repeat="letter in placedWord track by $index" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;">
+      <p ng-click="removeLetter($index)" style="display: inline;">{{letter}}</p>
     </div>
   <!-- </canvas> -->
 </div>
