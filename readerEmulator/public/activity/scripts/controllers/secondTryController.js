@@ -5,8 +5,6 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
 
   $scope.correctWord = dataIn.word.fullWord;
 
-  $scope.allLetter = SpellingFactory.displayWord();
-
   // $scope.underline = "";
   // $scope.displayUnderline = function(){
   //   for(var i = 0; i < $scope.correctWord.length; i++){
@@ -15,22 +13,31 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
   // };
   //populates playing field with '_''s equal to the correct word's length
   $scope.placedWord = [];
+  $scope.placed = [];
   for (var i = 0; i < $scope.correctWord.length; i++) {
-    $scope.placedWord.push('_');
+    $scope.placedWord.push({letter: '_', placedIndex: -1});
   }
   //looks for first '_' in playing field and replaces with clicked letter
-  $scope.placeLetter = function(letter){
+  $scope.placeLetter = function(letter, index){
     console.log('in placeLetter');
-    $scope.placedWord[$scope.placedWord.indexOf('_')] = letter;
+    placedWord = $scope.placedWord.map(function(index){
+      return index.letter;
+    });
+    $scope.placedWord[placedWord.indexOf('_')] = {letter: letter, placedIndex: index};
+    $scope.placed[index] = true;
     console.log($scope.placedWord);
   }; // end placeLetter function
   //removes the clicked letter from the playing field
-  $scope.removeLetter = function(index){
-    $scope.placedWord[index] = '_';
+  $scope.removeLetter = function(index, placedIndex){
+    $scope.placedWord[index] = {letter: '_', placedIndex: -1};
+    $scope.placed[placedIndex] = false;
   };// end removeLetter
 
   // spellchecking function
   $scope.checkSpelling = function(placedWord){
+    placedWord = placedWord.map(function(index){
+      return index.letter;
+    });
     console.log('in $scope.checkSpelling');
     console.log(placedWord);
     console.log($scope.correctWord);
@@ -52,6 +59,9 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
   }; // end checkSpelling function
 
   $scope.correctPlacement = function(placedWord){
+    placedWord = placedWord.map(function(index){
+      return index.letter;
+    });
     $scope.change = [];
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){

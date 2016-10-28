@@ -63,4 +63,6 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
       appMgr.setActivityComplete();
     });
   };
+
+  $scope.allLetter = SpellingFactory.displayWord();
 }]);

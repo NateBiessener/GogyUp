@@ -3,7 +3,6 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   if (SpellingFactory.getDataOut().complete) {
     $scope.incorrectAnswer = true;
   }
-  $scope.allLetter = SpellingFactory.displayWord();
   // pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();
 
@@ -25,16 +24,22 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   console.log(graphemeIndex);
 
   $scope.placedWord = [];
+  $scope.placed = [];
   placeGrapheme();
   //looks for first '_' in playing field and replaces with clicked letter
-  $scope.placeLetter = function(letter){
+  $scope.placeLetter = function(letter, index){
     console.log('in placeLetter');
-    $scope.placedWord[$scope.placedWord.indexOf('_')] = letter;
+    placedWord = $scope.placedWord.map(function(index){
+      return index.letter;
+    });
+    $scope.placedWord[placedWord.indexOf('_')] = {letter: letter, placedIndex: index};
+    $scope.placed[index] = true;
     console.log($scope.placedWord);
   }; // end placeLetter function
   //removes the clicked letter from the playing field
-  $scope.removeLetter = function(index){
-    $scope.placedWord[index] = '_';
+  $scope.removeLetter = function(index, placedIndex){
+    $scope.placedWord[index] = {letter: '_', placedIndex: -1};
+    $scope.placed[placedIndex] = false;
   };// end removeLetter
 
   // spellchecking function
@@ -64,10 +69,10 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
     j = 0;
     for (var i = 0; i < targetArray.length; i++) {
       if(i >= graphemeIndex && i <= (graphemeIndex + (Graph.length - 1))){
-        $scope.placedWord.push(splitGraph[j]);
+        $scope.placedWord.push({letter: splitGraph[j], placedIndex: i});
         j++;
       } else {
-        $scope.placedWord.push("_");
+        $scope.placedWord.push({letter: "_", placedInex: -1});
       }
     }
     // console.log($scope.placedWord);

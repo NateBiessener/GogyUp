@@ -10,22 +10,25 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   $scope.correctWord = dataIn.word.fullWord;
 
   $scope.placedWord = [];
+  $scope.placed = [];
   // placeLetter function adds clicked letter to playing field
-  $scope.placeLetter = function(letter){
+  $scope.placeLetter = function(letter, index){
     console.log('in placeLetter');
-    $scope.placedWord.push(letter);
+    $scope.placedWord.push({letter: letter, placedIndex: index});
+    $scope.placed[index] = true;
     console.log($scope.placedWord);
   }; // end placeLetter function
   //removes clicked letter from playing field
-  $scope.removeLetter = function(index){
+  $scope.removeLetter = function(index, placedIndex){
     $scope.placedWord.splice(index, 1);
+    $scope.placed[placedIndex] = false;
   };// end removeLetter
-
-  // displayWord function
-  $scope.allLetter = SpellingFactory.displayWord();
 
   // spellchecking function
   $scope.checkSpelling = function(placedWord){
+    placedWord = placedWord.map(function(index){
+      return index.letter;
+    });
     console.log('in $scope.checkSpelling');
     console.log(placedWord);
     console.log($scope.correctWord);
@@ -48,6 +51,9 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
 
   }; // end checkSpelling function
   $scope.correctPlacement = function(placedWord){
+    placedWord = placedWord.map(function(index){
+      return index.letter;
+    });
     $scope.change = [];
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){
