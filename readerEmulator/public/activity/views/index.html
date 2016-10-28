@@ -26,8 +26,8 @@
         <div id='close' type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
         <div class="data-sentence"><h3>{{showSentence}}<h3></div>
         <div class="button-container">
-          <button class="play-word"><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;Word</button>
-          <button class="play-sentence"><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;Sentence</button>
+          <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;Word</button>
+          <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;Sentence</button>
         </div>
       </div>
       <main ng-view></main>
