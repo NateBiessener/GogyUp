@@ -53,7 +53,12 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       if(placedWord[i] == $scope.correctWord[i]){
         console.log(true);
         $scope.change[i] = true;
-      }
-    }
-  };
+      }//end if statement
+    }//end for loop
+  };//end correctPlacement
+  $scope.sayWord = function(){
+    responsiveVoice.speak(window.parent.stuff.word.fullWord,  "UK English Male");
+
+  };//end say word
+
 }]); // end controller
