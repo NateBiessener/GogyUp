@@ -18,7 +18,7 @@ myApp.factory('SpellingFactory', [function(){
 
   var setDataOut = function(object){
     dataOut = object;
-  }
+  };
 
   var timeSave = function(timestamp) {
     if(!dataOut.attempts.attemptOne){
@@ -62,7 +62,6 @@ myApp.factory('SpellingFactory', [function(){
     }
     return false;
   };
-
   var displayWord = function(){
     console.log('in displayWord');
     var wordArray = [];
@@ -70,6 +69,8 @@ myApp.factory('SpellingFactory', [function(){
     for(var i= 0; i< objectIn.word.fullWord.length; i++){
       wordArray.push(objectIn.word.fullWord.charAt(i));
     }
+    var correctWordArray = wordArray;
+    console.log(correctWordArray);
     //generate 2 random letters to add to array
     for( var j=0; j < 2; j++){
       wordArray.push(possible.charAt(Math.floor(Math.random() * possible.length)));

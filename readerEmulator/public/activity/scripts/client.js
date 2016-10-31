@@ -23,7 +23,7 @@ myApp.config(['$routeProvider', function($routeProvider){
     });
 }]); // end angular routing
 
-myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', function($scope, $location, SpellingFactory){
+myApp.controller('mainController', ['$scope', '$location', '$sce', 'SpellingFactory', function($scope, $location, $sce, SpellingFactory){
 
   console.log(window.parent.stuff);
 
@@ -52,7 +52,7 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
   var word = window.parent.stuff.word.fullWord;
   console.log(sentence);
   $scope.displaySentence = function(){
-    $scope.showSentence = sentence.replace(word,"_______");
+    $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,"_______"));
   };
   console.log($scope.displaySentence);
   $scope.getRidOfMe = function(){

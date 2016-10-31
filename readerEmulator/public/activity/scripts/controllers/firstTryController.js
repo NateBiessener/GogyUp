@@ -1,9 +1,12 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
-myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
+myApp.controller('firstTryController', ['$scope', '$sce', 'SpellingFactory', function($scope, $sce, SpellingFactory){
   console.log('in firstTryController');
 
   console.log(window.parent.stuff.word.fullWord);
-
+  // $scope.displaySomething = function(){
+  //   console.log('hi');
+  //   $scope.$parent.showSentence = window.parent.stuff.sentence;
+  // };
   //pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();
 
@@ -20,10 +23,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
   $scope.removeLetter = function(index){
     $scope.placedWord.splice(index, 1);
   };// end removeLetter
-
   // displayWord function
   $scope.allLetter = SpellingFactory.displayWord();
-
   // spellchecking function
   $scope.checkSpelling = function(placedWord){
     console.log('in $scope.checkSpelling');
@@ -39,7 +40,13 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       });
     }
     if(placedWord === $scope.correctWord){
+      var sentence = window.parent.stuff.sentence;
       $scope.correctAnswer = true;
+      // $scope.$parent.showSentence = window.parent.stuff.sentence;
+      // console.log($scope.underlineWords(sentence));
+      $scope.$parent.displaySent = $scope.underlineWords(sentence);
+       $scope.$parent.showSentence = $scope.underlineWords(sentence);
+      //  console.log($scope.$parent.showSentence);
       SpellingFactory.setComplete();
       SpellingFactory.setScore();
     } else {
@@ -56,9 +63,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       }//end if statement
     }//end for loop
   };//end correctPlacement
-  $scope.sayWord = function(){
-    responsiveVoice.speak(window.parent.stuff.word.fullWord,  "UK English Male");
-
-  };//end say word
-
+  $scope.underlineWords = function (sentence){
+    console.log('in underlineWords');
+    return $sce.trustAsHtml(sentence.replace(window.parent.stuff.word.fullWord, '<u>'+window.parent.stuff.word.fullWord+ '</u>'));
+};
 }]); // end controller
