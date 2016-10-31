@@ -83,9 +83,9 @@ $(document).ready(function(){
 
   //creates an iframe that will run the spelling game. Game script will pull data from window.stuff
   function runGame(dataIn){
-    console.log(dataIn);
+    // console.log(dataIn);
     //******************* MAY need to be changed to an additional API method ****************************//
-    window.stuff = dataIn;
+    appMgr.spellingData = dataIn;
     //create new iframe
     var activity = $('<iframe />');
     //source game file

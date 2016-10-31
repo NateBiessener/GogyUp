@@ -2,7 +2,7 @@ var possible = "abcdefghijklmnopqrstuvwxyz";
 myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in firstTryController');
 
-  console.log(window.parent.stuff.word.fullWord);
+  console.log(appMgr.spellingData.word.fullWord);
 
   //pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();

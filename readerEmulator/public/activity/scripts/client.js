@@ -25,20 +25,20 @@ myApp.config(['$routeProvider', function($routeProvider){
 
 myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', function($scope, $location, SpellingFactory){
 
-  console.log(window.parent.stuff);
+  // console.log(appMgr.spellingData);
 
   $scope.speakSentence = function(){
-    responsiveVoice.speak(window.parent.stuff.sentence);
+    responsiveVoice.speak(appMgr.spellingData.sentence);
   };
 
   $scope.speakWord = function(){
-    responsiveVoice.speak(window.parent.stuff.word.fullWord);
+    responsiveVoice.speak(appMgr.spellingData.word.fullWord);
   };
 
   //send dataIn to Factory
-  SpellingFactory.storeObject(window.parent.stuff);
-  appMgr.dataLoad(window.parent.stuff.activityTitle, function(data){
-    console.log(data);
+  SpellingFactory.storeObject(appMgr.spellingData);
+  appMgr.dataLoad(appMgr.spellingData.activityTitle, function(data){
+    // console.log(data);
     if (data) {
       SpellingFactory.setDataOut(data);
       if (data.attempts.attemptTwo) {
@@ -48,13 +48,13 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
       }
     }
   });
-  var sentence = window.parent.stuff.sentence;
-  var word = window.parent.stuff.word.fullWord;
+  var sentence = appMgr.spellingData.sentence;
+  var word = appMgr.spellingData.word.fullWord;
   console.log(sentence);
   $scope.displaySentence = function(){
     $scope.showSentence = sentence.replace(word,"_______");
   };
-  console.log($scope.displaySentence);
+  // console.log($scope.displaySentence);
   $scope.getRidOfMe = function(){
     var currentTime = Date.now();
     SpellingFactory.finishTime(currentTime);
