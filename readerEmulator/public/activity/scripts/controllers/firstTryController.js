@@ -1,5 +1,4 @@
-var possible = "abcdefghijklmnopqrstuvwxyz";
-myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
+myApp.controller('firstTryController', ['$scope', '$sce', 'SpellingFactory', function($scope, $sce, SpellingFactory){
   $scope.placedWord = [];
   $scope.placed = [];
   console.log('in firstTryController');
@@ -22,7 +21,8 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
     $scope.placedWord.splice(index, 1);
     $scope.placed[placedIndex] = false;
   };// end removeLetter
-
+  // displayWord function
+  $scope.allLetter = SpellingFactory.displayWord();
   // spellchecking function
   $scope.checkSpelling = function(placedWord){
     placedWord = placedWord.map(function(index){
@@ -41,7 +41,9 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       });
     }
     if(placedWord === $scope.correctWord){
+      var sentence = appMgr.spellingData.sentence;
       $scope.correctAnswer = true;
+      $scope.$parent.displaySent = $scope.underlineWords(sentence);
       SpellingFactory.setComplete();
       SpellingFactory.setScore();
     } else {
@@ -58,8 +60,12 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       if(placedWord[i] == $scope.correctWord[i]){
         console.log(true);
         $scope.change[i] = true;
-      }
-    }
+      }//end if statement
+    }//end for loop
+  };//end correctPlacement
+  $scope.underlineWords = function (sentence){
+    console.log('in underlineWords');
+    return $sce.trustAsHtml(sentence.replace(appMgr.spellingData.word.fullWord, '<u>'+appMgr.spellingData.word.fullWord+ '</u>'));
   };
 
   if (SpellingFactory.getDataOut().score) {
@@ -72,6 +78,6 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       }
     });
     $scope.correctPlacement($scope.placedWord);
-    //***********FILL SENTENCE BLANK*******************//
+    $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
   }
 }]); // end controller

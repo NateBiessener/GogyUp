@@ -5,6 +5,7 @@
     <title>GogyUp</title>
     <script src="../vendors/angular.min.js"></script>
     <script src="../vendors/angular-route.min.js"></script>
+    <script type="../vendors/angular-animate.min.js"></script>
     <script src="../vendors/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script src="../vendors/jquery-ui.min.js" charset="utf-8"></script>
     <script src="../vendors/jquery.lettering-0.6.1.min.js" charset="utf-8"></script>
@@ -23,8 +24,8 @@
   </head>
   <body ng-controller="mainController">
       <div ng-init="displaySentence()" class="container">
-        <div id='close' type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
-        <div class="data-sentence" style="margin-top: 45px;"><h3>{{showSentence}}<h3></div>
+      <div id='close' type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
+        <h3 class="data-sentence" ng-bind-html="displaySent"></h3>
         <div class="button-container">
           <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;Word</button>
           <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;Sentence</button>

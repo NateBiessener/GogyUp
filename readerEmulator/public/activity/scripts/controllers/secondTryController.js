@@ -1,4 +1,4 @@
-myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
+myApp.controller('secondTryController', ['$scope', '$sce', 'SpellingFactory', function($scope, $sce, SpellingFactory){
   console.log('in secondTryController');
   $scope.placedWord = [];
   $scope.placed = [];
@@ -50,6 +50,8 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
     });
     if(placedWord === $scope.correctWord){
       $scope.correctAnswer = true;
+      var sentence = appMgr.spellingData.sentence;
+      $scope.$parent.displaySent = $scope.underlineWords(sentence);
       SpellingFactory.setComplete();
       SpellingFactory.setScore();
     } else {
@@ -71,6 +73,11 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
     }
   };
 
+  $scope.underlineWords = function (sentence){
+    console.log('in underlineWords');
+    return $sce.trustAsHtml(sentence.replace(appMgr.spellingData.word.fullWord, '<u>'+appMgr.spellingData.word.fullWord+ '</u>'));
+  };
+
   if (SpellingFactory.getDataOut().score) {
     $scope.correctAnswer = true;
     $scope.allLetter = [];
@@ -81,6 +88,6 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
       }
     });
     $scope.correctPlacement($scope.placedWord);
-    //***********FILL SENTENCE BLANK*******************//
+    $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
   }
 }]); // end controller
