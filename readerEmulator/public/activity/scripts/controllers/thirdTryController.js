@@ -1,8 +1,8 @@
 myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in thirdTryController');
-  if (SpellingFactory.getDataOut().complete) {
-    $scope.incorrectAnswer = true;
-  }
+  $scope.placedWord = [];
+  $scope.placed = [];
+
   // pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();
 
@@ -23,8 +23,6 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
   var graphemeIndex = $scope.correctWord.indexOf(Graph);
   console.log(graphemeIndex);
 
-  $scope.placedWord = [];
-  $scope.placed = [];
   placeGrapheme();
   //looks for first '_' in playing field and replaces with clicked letter
   $scope.placeLetter = function(letter, index){
@@ -93,4 +91,22 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
       }
     }
   };
+
+  if (SpellingFactory.getDataOut().complete) {
+    //if score is greater than 0
+    if (SpellingFactory.getDataOut().score) {
+      $scope.correctAnswer = true;
+      $scope.allLetter = [];
+      $scope.placedWord = $scope.correctWord.split('').map(function(index){
+        return {
+          letter: index,
+          placedIndex: -1
+        }
+      });
+      $scope.correctPlacement($scope.placedWord);
+      //***********FILL SENTENCE BLANK*******************//
+    } else {
+      $scope.incorrectAnswer = true;
+    }
+  }
 }]); // end controller

@@ -1,16 +1,15 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
 myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
+  $scope.placedWord = [];
+  $scope.placed = [];
   console.log('in firstTryController');
 
   console.log(appMgr.spellingData.word.fullWord);
-
   //pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();
 
   $scope.correctWord = dataIn.word.fullWord;
 
-  $scope.placedWord = [];
-  $scope.placed = [];
   // placeLetter function adds clicked letter to playing field
   $scope.placeLetter = function(letter, index){
     console.log('in placeLetter');
@@ -62,4 +61,17 @@ myApp.controller('firstTryController', ['$scope', 'SpellingFactory', function($s
       }
     }
   };
+
+  if (SpellingFactory.getDataOut().score) {
+    $scope.correctAnswer = true;
+    $scope.allLetter = [];
+    $scope.placedWord = $scope.correctWord.split('').map(function(index){
+      return {
+        letter: index,
+        placedIndex: -1
+      }
+    });
+    $scope.correctPlacement($scope.placedWord);
+    //***********FILL SENTENCE BLANK*******************//
+  }
 }]); // end controller

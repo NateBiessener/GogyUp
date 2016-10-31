@@ -1,8 +1,10 @@
 myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($scope, SpellingFactory){
   console.log('in secondTryController');
+  $scope.placedWord = [];
+  $scope.placed = [];
   //pull dataIn from Factory
-  var dataIn = SpellingFactory.loadObject();
 
+  var dataIn = SpellingFactory.loadObject();
   $scope.correctWord = dataIn.word.fullWord;
 
   // $scope.underline = "";
@@ -12,8 +14,6 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
   //   }
   // };
   //populates playing field with '_''s equal to the correct word's length
-  $scope.placedWord = [];
-  $scope.placed = [];
   for (var i = 0; i < $scope.correctWord.length; i++) {
     $scope.placedWord.push({letter: '_', placedIndex: -1});
   }
@@ -70,4 +70,17 @@ myApp.controller('secondTryController', ['$scope', 'SpellingFactory', function($
       }
     }
   };
+
+  if (SpellingFactory.getDataOut().score) {
+    $scope.correctAnswer = true;
+    $scope.allLetter = [];
+    $scope.placedWord = $scope.correctWord.split('').map(function(index){
+      return {
+        letter: index,
+        placedIndex: -1
+      }
+    });
+    $scope.correctPlacement($scope.placedWord);
+    //***********FILL SENTENCE BLANK*******************//
+  }
 }]); // end controller

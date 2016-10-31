@@ -41,7 +41,21 @@ myApp.controller('mainController', ['$scope', '$location', 'SpellingFactory', fu
     // console.log(data);
     if (data) {
       SpellingFactory.setDataOut(data);
-      if (data.attempts.attemptTwo) {
+      if (data.score) {
+        switch (data.score) {
+          case 3:
+            $location.url('firstTry');
+            break;
+          case 2:
+            $location.url('secondTry');
+            break;
+          case 1:
+            $location.url('thirdTry');
+            break;
+          default:
+            console.log('invalid score passed in');
+        }
+      } else if (data.attempts.attemptTwo) {
         $location.url('/thirdTry');
       } else if (data.attempts.attemptOne) {
         $location.url('/secondTry');
