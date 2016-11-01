@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../styles/main.css">
   </head>
   <body ng-controller="mainController">
+    <div ng-class="{'shake': shakeIt}">
       <div ng-init="displaySentence()" class="container">
       <div id='close' type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
         <h3 class="data-sentence" ng-bind-html="displaySent"></h3>
@@ -32,5 +33,6 @@
         </div>
       </div>
       <main ng-view></main>
+    </div>
   </body>
 </html>

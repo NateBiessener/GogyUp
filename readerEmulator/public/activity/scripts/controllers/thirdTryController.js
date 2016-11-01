@@ -55,6 +55,8 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
       SpellingFactory.setScore();
     } else {
       $scope.incorrectAnswer = true;
+      $scope.$parent.shakeIt = true;
+      console.log($scope.shakeIt);
       SpellingFactory.setComplete();
     }
 
