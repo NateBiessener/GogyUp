@@ -45,7 +45,7 @@ myApp.controller('firstTryController', ['$scope', '$sce', 'SpellingFactory', fun
       // $scope.$parent.showSentence = window.parent.stuff.sentence;
       // console.log($scope.underlineWords(sentence));
       $scope.$parent.displaySent = $scope.underlineWords(sentence);
-       $scope.$parent.showSentence = $scope.underlineWords(sentence);
+      $scope.$parent.fireworks = true;
       //  console.log($scope.$parent.showSentence);
       SpellingFactory.setComplete();
       SpellingFactory.setScore();

@@ -51,6 +51,7 @@ myApp.controller('thirdTryController', ['$scope', 'SpellingFactory', function($s
     });
     if(placedWord === $scope.correctWord){
       $scope.correctAnswer = true;
+      $scope.$parent.fireworks =true;
       SpellingFactory.setComplete();
       SpellingFactory.setScore();
     } else {
