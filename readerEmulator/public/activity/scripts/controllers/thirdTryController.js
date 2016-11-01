@@ -66,6 +66,7 @@ myApp.controller('thirdTryController', ['$scope', '$sce', 'SpellingFactory', fun
       $scope.incorrectAnswer = true;
       $scope.$parent.shakeIt = true;
       console.log($scope.shakeIt);
+      $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
       SpellingFactory.setComplete();
     }
 
@@ -114,8 +115,7 @@ myApp.controller('thirdTryController', ['$scope', '$sce', 'SpellingFactory', fun
         };
       });
       $scope.correctPlacement($scope.placedWord);
-      $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
-    } else {
+g    } else {
       $scope.incorrectAnswer = true;
     }
   }
