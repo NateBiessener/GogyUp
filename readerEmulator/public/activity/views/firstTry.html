@@ -1,12 +1,12 @@
 <div ng-init="displayWord()"></div>
-<div class="playing-field">
+<div class="playing-field" droppable drop='handleDrop'>
   <!-- <canvas id="canvas"> -->
-    <div ng-repeat="letter in placedWord track by $index" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;">
-      <p ng-click="removeLetter($index, letter.placedIndex)" style="display: inline;">{{letter.letter}}</p>
+    <div ng-repeat="letter in placedWord track by $index" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)">
+      {{letter.letter}}
     </div>
   <!-- </canvas> -->
 </div>
-<div ng-repeat="letter in allLetter track by $index" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
+<div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
   {{letter}}
 </div>
 

@@ -90,4 +90,8 @@ myApp.controller('secondTryController', ['$scope', '$sce', 'SpellingFactory', fu
     $scope.correctPlacement($scope.placedWord);
     $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
   }
+
+  $scope.handleDrop = function(letter, index) {
+    $scope.placeLetter(letter, index);
+  }
 }]); // end controller

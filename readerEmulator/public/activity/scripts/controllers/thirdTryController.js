@@ -116,4 +116,8 @@ myApp.controller('thirdTryController', ['$scope', '$sce', 'SpellingFactory', fun
       $scope.incorrectAnswer = true;
     }
   }
+
+  $scope.handleDrop = function(letter, index) {
+    $scope.placeLetter(letter, index);
+  }
 }]); // end controller
