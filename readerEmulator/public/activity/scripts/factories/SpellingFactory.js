@@ -63,6 +63,7 @@ myApp.factory('SpellingFactory', [function(){
     return false;
   };
   var displayWord = function(){
+    var possible = "abcdefghijklmnopqrstuvwxyz";
     console.log('in displayWord');
     var wordArray = [];
     //make word into an array of letters
@@ -90,7 +91,13 @@ myApp.factory('SpellingFactory', [function(){
         wordArray[m] = wordArray[i];
         wordArray[i] = t;
       }
-
+      var collapsed = wordArray.reduce(function(start, index){
+        return start + index;
+      });
+      if (collapsed.includes(objectIn.word.fullWord)) {
+        console.log('rescrambling');
+        wordArray = displayWord();
+      }
       return wordArray;
     }
     //the letters in wordArray will be mixed around
