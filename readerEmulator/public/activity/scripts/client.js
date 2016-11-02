@@ -130,10 +130,12 @@ myApp.controller('mainController', ['$scope', '$location', '$sce', 'SpellingFact
 
   $scope.speakSentence = function(){
     responsiveVoice.speak(appMgr.spellingData.sentence);
+    SpellingFactory.speakSentenceClick();
   };
 
   $scope.speakWord = function(){
     responsiveVoice.speak(appMgr.spellingData.word.fullWord);
+    SpellingFactory.speakWordClick();
   };
 
   //send dataIn to Factory

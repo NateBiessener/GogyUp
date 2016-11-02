@@ -62,6 +62,16 @@ myApp.factory('SpellingFactory', [function(){
     }
     return false;
   };
+  //counts the number of times the word button is clicked
+  var speakWordClick = function(){
+    dataOut.wordTTSClicks++;
+    console.log(dataOut.wordTTSClicks);
+  };
+  //counts the number of times the sentence button is clicked
+  var speakSentenceClick = function(){
+    dataOut.sentenceTTSClicks++;
+    console.log(dataOut.sentenceTTSClicks);
+  };
   var displayWord = function(){
     var possible = "abcdefghijklmnopqrstuvwxyz";
     console.log('in displayWord');
@@ -116,6 +126,8 @@ myApp.factory('SpellingFactory', [function(){
     setScore: setScore,
     finishTime: finishTime,
     setDataOut: setDataOut,
+    speakWordClick: speakWordClick,
+    speakSentenceClick: speakSentenceClick,
     getDataOut: function(){
       return dataOut;
     }
