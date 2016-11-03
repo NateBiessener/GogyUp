@@ -44,15 +44,21 @@
   <link rel="stylesheet" href="../styles/skeleton.css">
   <!-- <link rel="stylesheet" href="../styles/bp.css"> -->
   <link rel="stylesheet" href="../styles/style2.css">
+  <link rel="stylesheet" href="../styles/animations.css">
 
 </head>
 <body ng-controller="mainController">
+  <div ng-class="{'shake': shakeIt}">
+  <div ng-class="{'pyro': fireworks}">
+    <!-- before & after divs are used for fireworks animation -->
+    <div class="before"></div>
+    <div class="after"></div>
 
-  <header>
-    <div id="close" type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
-</header>
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <header>
+      <div id="close" type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
+    </header>
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div ng-init="displaySentence()" class="container">
     <div class="row">
       <!-- <div class="one-half column" style="margin-top: 25%"> -->
@@ -67,7 +73,8 @@
       <main ng-view></main>
       </div>
     </div>
-
+  </div>
+  </div>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
