@@ -6,9 +6,10 @@
     </div>
   <!-- </canvas> -->
 </div>
-<br>
+<div class="wtf">
 <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
   {{letter}}
+</div>
 </div>
 <div ng-show="correctAnswer">Great job!</div>
 <div ng-if="incorrectAnswer">Correct spelling: {{correctWord}}</div>
