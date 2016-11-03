@@ -115,7 +115,7 @@ myApp.controller('thirdTryController', ['$scope', '$sce', 'SpellingFactory', fun
         };
       });
       $scope.correctPlacement($scope.placedWord);
-g    } else {
+       } else {
       $scope.incorrectAnswer = true;
     }
   }

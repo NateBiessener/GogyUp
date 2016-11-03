@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>GogyUp Read!</title>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+  <meta http-equiv="cleartype" content="on">
+
+  <!-- Dependencies
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="../vendors/angular.min.js"></script>
+  <script src="../vendors/angular-route.min.js"></script>
+  <script src="../vendors/jquery-3.1.0.min.js" charset="utf-8"></script>
+  <script src="../vendors/jquery-ui.min.js" charset="utf-8"></script>
+  <script src="../vendors/jquery.lettering-0.6.1.min.js" charset="utf-8"></script>
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="../scripts/styleScript.js" charset="utf-8"></script>
+  <script src="../scripts/helper.js" charset="utf-8"></script>
+  <script src="../scripts/client.js" charset="utf-8"></script>
+  <script src="../scripts/controllers/firstTryController.js" charset="utf-8"></script>
+  <script src="../scripts/controllers/secondTryController.js" charset="utf-8"></script>
+  <script src="../scripts/controllers/thirdTryController.js" charset="utf-8"></script>
+  <script src="../scripts/factories/SpellingFactory.js" charset="utf-8"></script>
+  <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=News+Cycle:400,700" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../styles/normalize.css">
+  <link rel="stylesheet" href="../styles/skeleton.css">
+  <!-- <link rel="stylesheet" href="../styles/bp.css"> -->
+  <link rel="stylesheet" href="../styles/style2.css">
+
+</head>
+<body ng-controller="mainController">
+
+  <header>
+    <div id="close" type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
+</header>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div ng-init="displaySentence()" class="container">
+    <div class="row">
+      <!-- <div class="one-half column" style="margin-top: 25%"> -->
+      <button ng-click="dataSentence = !dataSentence">ChangeFont</button>
+        <div ng-class="dataSentence ? '@font-face': 'font-change'"><h3>{{displaySent}}<h3></div>
+        <div class="button-container">
+          <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;&nbsp;Word</button>
+          <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;&nbsp;Sentence</button>
+        </div>
+        <img class="logo" src="../styles/images/test.png">
+
+      <!-- </div> -->
+      <main ng-view></main>
+      </div>
+    </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
