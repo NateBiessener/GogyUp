@@ -3,6 +3,9 @@
     font-family: NewsGothic;
     src: url(./fonts/newsgothicstd.otf);
 }
+.serif{
+  font-family: "Times New Roman";
+}
 
 body {
   background-color: #EAEAEA;

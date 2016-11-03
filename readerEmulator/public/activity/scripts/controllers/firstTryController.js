@@ -50,6 +50,7 @@ myApp.controller('firstTryController', ['$scope', '$sce', 'SpellingFactory', fun
       SpellingFactory.setScore();
     } else {
       $scope.incorrectAnswer = true;
+      $scope.$parent.shakeIt = true;
     }
 
   }; // end checkSpelling function

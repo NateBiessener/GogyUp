@@ -3,10 +3,9 @@ myApp.controller('secondTryController', ['$scope', '$sce', 'SpellingFactory', fu
   $scope.placedWord = [];
   $scope.placed = [];
   //pull dataIn from Factory
-
+  $scope.$parent.shakeIt = false;
   var dataIn = SpellingFactory.loadObject();
   $scope.correctWord = dataIn.word.fullWord;
-
   for (var i = 0; i < $scope.correctWord.length; i++) {
     $scope.placedWord.push({letter: '_', placedIndex: -1});
   }
@@ -50,6 +49,7 @@ myApp.controller('secondTryController', ['$scope', '$sce', 'SpellingFactory', fu
       SpellingFactory.setScore();
     } else {
       $scope.incorrectAnswer = true;
+      $scope.$parent.shakeIt = true;
     }
 
   }; // end checkSpelling function

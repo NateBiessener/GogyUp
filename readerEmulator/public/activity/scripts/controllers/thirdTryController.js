@@ -5,7 +5,7 @@ myApp.controller('thirdTryController', ['$scope', '$sce', 'SpellingFactory', fun
 
   // pull dataIn from Factory
   var dataIn = SpellingFactory.loadObject();
-
+  $scope.$parent.shakeIt = false;
   $scope.correctWord = dataIn.word.fullWord;
   console.log($scope.correctWord);
 
