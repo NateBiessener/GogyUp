@@ -18,7 +18,7 @@ myApp.factory('SpellingFactory', [function(){
 
   var setDataOut = function(object){
     dataOut = object;
-  }
+  };
 
   var timeSave = function(timestamp) {
     if(!dataOut.attempts.attemptOne){
@@ -62,14 +62,26 @@ myApp.factory('SpellingFactory', [function(){
     }
     return false;
   };
-
+  //counts the number of times the word button is clicked
+  var speakWordClick = function(){
+    dataOut.wordTTSClicks++;
+    console.log(dataOut.wordTTSClicks);
+  };
+  //counts the number of times the sentence button is clicked
+  var speakSentenceClick = function(){
+    dataOut.sentenceTTSClicks++;
+    console.log(dataOut.sentenceTTSClicks);
+  };
   var displayWord = function(){
+    var possible = "abcdefghijklmnopqrstuvwxyz";
     console.log('in displayWord');
     var wordArray = [];
     //make word into an array of letters
     for(var i= 0; i< objectIn.word.fullWord.length; i++){
       wordArray.push(objectIn.word.fullWord.charAt(i));
     }
+    var correctWordArray = wordArray;
+    console.log(correctWordArray);
     //generate 2 random letters to add to array
     for( var j=0; j < 2; j++){
       wordArray.push(possible.charAt(Math.floor(Math.random() * possible.length)));
@@ -89,7 +101,13 @@ myApp.factory('SpellingFactory', [function(){
         wordArray[m] = wordArray[i];
         wordArray[i] = t;
       }
-
+      var collapsed = wordArray.reduce(function(start, index){
+        return start + index;
+      });
+      if (collapsed.includes(objectIn.word.fullWord)) {
+        console.log('rescrambling');
+        wordArray = displayWord();
+      }
       return wordArray;
     }
     //the letters in wordArray will be mixed around
@@ -108,6 +126,8 @@ myApp.factory('SpellingFactory', [function(){
     setScore: setScore,
     finishTime: finishTime,
     setDataOut: setDataOut,
+    speakWordClick: speakWordClick,
+    speakSentenceClick: speakSentenceClick,
     getDataOut: function(){
       return dataOut;
     }

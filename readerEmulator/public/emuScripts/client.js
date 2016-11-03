@@ -83,17 +83,17 @@ $(document).ready(function(){
 
   //creates an iframe that will run the spelling game. Game script will pull data from window.stuff
   function runGame(dataIn){
-    console.log(dataIn);
+    // console.log(dataIn);
     //******************* MAY need to be changed to an additional API method ****************************//
-    window.stuff = dataIn;
+    appMgr.spellingData = dataIn;
     //create new iframe
     var activity = $('<iframe />');
     //source game file
     activity.attr('src', 'activity/views/index.html');
     //******************CHANGE THESE TO WHATEVER THEY NEED TO BE*********************//
-    activity.attr('height', '600px');
-    activity.attr('width', '400px');
-    activity.attr('style', 'position: fixed; z-index: 1; left: 5px; top: 5px; background-color: #fff;')
+    activity.attr('height', '100%');
+    activity.attr('width', '100%');
+    activity.attr('style', 'position: fixed; z-index: 1; top: 0; background-color: #fff;')
     //attach iframe to DOM
     $('body').append(activity);
   }
