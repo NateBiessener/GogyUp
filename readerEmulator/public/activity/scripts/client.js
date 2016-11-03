@@ -182,8 +182,9 @@ myApp.controller('mainController', ['$scope', '$location', '$sce', 'SpellingFact
   };
 
   $scope.allLetter = SpellingFactory.displayWord();
-$scope.changeFont = function(){
-  console.log('in changeFont');
-   $scope.changeFont = ! $scope.changeFont;
-};
+
+  $scope.changeFont = function(){
+    console.log('in changeFont');
+     $scope.changeFont = ! $scope.changeFont;
+  };
 }]);
