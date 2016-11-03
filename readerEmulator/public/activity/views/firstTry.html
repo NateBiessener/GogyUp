@@ -8,7 +8,7 @@
   <!-- </canvas> -->
 
 <div class="wtf">
-<div ng-repeat="letter in allLetter track by $index" ng-click="placeLetter(letter)" class="data-tiles">
+<div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" ng-click="placeLetter(letter)" class="data-tiles">
   {{letter}}
 </div>
 </div>
