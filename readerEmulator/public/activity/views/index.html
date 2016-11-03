@@ -24,13 +24,21 @@
     <link rel="stylesheet" href="../styles/main.css">
   </head>
   <body ng-controller="mainController">
+    <div class="fonty">
     <div ng-class="{'shake': shakeIt}">
       <div ng-class="{'pyro': fireworks}">
         <div class="before"></div>
         <div class="after"></div>
+        <button ng-click="dataSentence = !dataSentence">ChangeFont</button>
+        <!-- <div ng-hide="font">
+        <button ng-click="changeFont()">Change Font</button>
+      </div>
+      <div ng-show="font">
+        <button ng-click="revertFont()">Revert Font</button>
+      </div> -->
           <div ng-init="displaySentence()" class="container">
           <div id='close' type="button" ng-click="getRidOfMe()"><i class="fa fa-window-close fa-2x"></i></div>
-            <h3 class="data-sentence" ng-bind-html="displaySent"></h3>
+            <h3 ng-class="dataSentence ? '@font-face': 'font-change'" ng-bind-html="displaySent"></h3>
             <div class="button-container">
           <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;Word</button>
           <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;Sentence</button>

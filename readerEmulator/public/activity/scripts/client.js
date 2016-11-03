@@ -182,8 +182,18 @@ myApp.controller('mainController', ['$scope', '$location', '$sce', 'SpellingFact
   };
 
   $scope.allLetter = SpellingFactory.displayWord();
-$scope.changeFont = function(){
-  console.log('in changeFont');
-   $scope.changeFont = ! $scope.changeFont;
-};
+  $scope.dataSentence = true;
+
+// $scope.changeFont = function(){
+//   console.log('in changeFont');
+//   $scope.style = {'font-family': "Times New Roman"};
+//   console.log($scope.style);
+//   $scope.font = true;
+// };
+// $scope.revertFont = function(){
+//   console.log('in revertFont');
+//   $scope.style = '.data-sentence';
+//   console.log($scope.style);
+//   $scope.font = false;
+// };
 }]);
