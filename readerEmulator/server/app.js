@@ -8,7 +8,7 @@ app.listen(3141, function(){
 
 app.get('/', function(req, res){
   // console.log('base url hit');
-  res.sendFile(path.resolve('readerEmulator/public/index.html'));
+  res.sendFile(path.resolve('readerEmulator/public/app.html'));
 });
 
-app.use(express.static('readerEmulator/public'));
+app.use(express.static('readerEmulator/public/'));
