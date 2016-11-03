@@ -9,7 +9,10 @@
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+  <meta http-equiv="cleartype" content="on">
 
   <!-- Dependencies
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -22,6 +25,7 @@
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="../scripts/styleScript.js" charset="utf-8"></script>
+  <script src="../scripts/helper.js" charset="utf-8"></script>
   <script src="../scripts/client.js" charset="utf-8"></script>
   <script src="../scripts/controllers/firstTryController.js" charset="utf-8"></script>
   <script src="../scripts/controllers/secondTryController.js" charset="utf-8"></script>
@@ -38,7 +42,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../styles/normalize.css">
   <link rel="stylesheet" href="../styles/skeleton.css">
-  <!-- <link rel="stylesheet" href="../styles/style.css"> -->
+  <!-- <link rel="stylesheet" href="../styles/bp.css"> -->
   <link rel="stylesheet" href="../styles/style2.css">
 
 </head>
@@ -54,9 +58,11 @@
       <!-- <div class="one-half column" style="margin-top: 25%"> -->
         <div class="data-sentence"><h3>{{showSentence}}<h3></div>
         <div class="button-container">
-          <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;Word</button>
-          <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;Sentence</button>
+          <button class="play" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;&nbsp;Word</button>
+          <button class="play" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;&nbsp;Sentence</button>
         </div>
+        <img class="logo" src="../styles/images/test.png">
+
       </div>
       <main ng-view></main>
       </div>

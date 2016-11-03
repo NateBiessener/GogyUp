@@ -96,9 +96,10 @@ body {
 .checkButton {
   background-color: #616161;
   color: white;
-  margin: 5vh;
+  margin: 10vh 0 5vh 0;
   /*margin-left: 30%;
   margin-right: 30%;*/
+  font-size: 2em;
   font-weight: bold;
 }
 
@@ -123,9 +124,10 @@ h1 {
 
 .button-container {
   text-align: center;
+  margin-top: 3vh;
 }
 
-.play-word {
+/*.play-word {
   background-color: #616161;
   color: white;
 }
@@ -133,6 +135,12 @@ h1 {
 .play-sentence {
   background-color: #616161;
   color: white;
+}*/
+
+.play {
+  background-color: #616161;
+  color: white;
+  font-size: 2em;
 }
 
 /*.data-tiles span[class^="word"] {
@@ -142,4 +150,10 @@ margin: 0 15px;
 
 .changeBackground{
   background-color: #c7dbc3;
+}
+
+.logo {
+  width: 5%;
+  height: auto;
+  margin-top: 2vh;
 }
