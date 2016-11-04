@@ -18,13 +18,10 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="../vendors/angular.min.js"></script>
   <script src="../vendors/jquery-3.1.0.min.js" charset="utf-8"></script>
-  <script src="../vendors/jquery-ui.min.js" charset="utf-8"></script>
   <script src="../vendors/jquery.lettering-0.6.1.min.js" charset="utf-8"></script>
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="../scripts/styleScript.js" charset="utf-8"></script>
-  <script src="../scripts/helper.js" charset="utf-8"></script>
   <script src="../scripts/client.js" charset="utf-8"></script>
   <script src="../scripts/factories/SpellingFactory.js" charset="utf-8"></script>
   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
@@ -59,7 +56,7 @@
     <div class="row">
       <!-- <div class="one-half column" style="margin-top: 25%"> -->
       <button ng-click="dataSentence = !dataSentence">ChangeFont</button>
-        <div ng-class="dataSentence ? '@font-face': 'font-change'"><h3>{{displaySent}}<h3></div>
+        <div ng-class="dataSentence ? '@font-face': 'font-change'"><h3 ng-bind-html="displaySent"><h3></div>
 
         <div class="button-container">
           <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;&nbsp;Word</button>
@@ -69,7 +66,7 @@
 
       <!-- </div> -->
 
-        <div ng-init="displayWord()" class="playing-field" droppable drop='handleDrop'>
+        <div ng-init="generateLetterTiles()" class="playing-field" droppable drop='handleDrop'>
           <div ng-repeat="letter in placedWord track by $index" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)">
             {{letter.letter}}
           </div>
@@ -81,8 +78,8 @@
         </div>
         <div ng-show="correctAnswer">Great job!</div>
         <div ng-show="incorrectAnswer">Try again!</div>
-        <div ng-if="incorrectAnswer">Correct spelling: {{correctWord}}</div>
-        <a ng-if="incorrectAnswer" href="#secondTry">Next Try</a>
+        <div ng-if="finalIncorrect">Correct spelling: {{correctWord}}</div>
+        <a ng-show="incorrectAnswer" ng-click="tryAgain()">Next Try</a>
         <button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="checkButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
       </div>
     </div>
