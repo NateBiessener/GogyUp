@@ -6,8 +6,14 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   //marshall variables
   $scope.placedWord = [];
   $scope.placed = [];
+  $scope.change = [];
   $scope.firstHint = false;
   $scope.secondHint = false;
+  //used to toggle dislexia font
+  $scope.dataSentence = true;
+
+  var sentence = appMgr.spellingData.sentence;
+  var word = appMgr.spellingData.word.fullWord;
 
   // console.log(appMgr.spellingData);
 
@@ -23,7 +29,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   //send dataIn to Factory
   SpellingFactory.storeObject(appMgr.spellingData);
-  //***BROKEN, FOR NOW...****//
+
   var objectIn = appMgr.spellingData;
   $scope.correctWord = objectIn.word.fullWord;
   appMgr.dataLoad(appMgr.spellingData.activityTitle, function(data){
@@ -31,35 +37,23 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     if (data) {
       SpellingFactory.setDataOut(data);
 
-      if (data.score) {
-        switch (data.score) {
-          case 3:
-            // $location.url('firstTry');
-            break;
-          case 2:
-            // $location.url('secondTry');
-            break;
-          case 1:
-            // $location.url('thirdTry');
-            break;
-          default:
-            console.log('invalid score passed in');
+      if (data.complete) {
+        if (data.score) {
+          //*************** ADD FIREWORKS AND SHOW CORRECT SPELLING IN PLAYING FIELD ******//
+        }
+        else {
+          //*************** SHOW CORRECT SPELLING *****************//
         }
       } else if (data.attempts.attemptTwo) {
-        // $location.url('/thirdTry');
+        showSecondHint();
       } else if (data.attempts.attemptOne) {
-        // $location.url('/secondTry');
+        showFirstHint();
       }
     }
   });
 
-  //***MAKE THIS CLEANER***//
-  var sentence = appMgr.spellingData.sentence;
-  var word = appMgr.spellingData.word.fullWord;
-  console.log(sentence);
-  $scope.displaySentence = function(){
-    $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,"_______"));
-  };
+
+  $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,"_______"));
   // console.log($scope.displaySentence);
 
   $scope.getRidOfMe = function(){
@@ -70,9 +64,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       appMgr.setActivityComplete();
     });
   };
-
-  //used to toggle dislexia font
-  $scope.dataSentence = true;
 
 
   var generateLetterTiles = function(){
@@ -153,7 +144,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     placedWord = placedWord.map(function(index){
       return index.letter;
     });
-    $scope.change = [];
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){
         console.log(true);
@@ -178,7 +168,12 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       $scope.displaySent = $scope.underlineWords(sentence);
       SpellingFactory.setComplete();
       SpellingFactory.setScore();
-    } else {
+    } else if($scope.secondHint){
+      $scope.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
+      $scope.correctPlacement(placedWord);
+      $scope.finalIncorrect = true;
+    }
+    else {
       $scope.correctPlacement(placedWord);
       $scope.$parent.shakeIt = true;
       $scope.incorrectAnswer = true;
@@ -199,40 +194,43 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     }
 
     if (!($scope.firstHint || $scope.secondHint)){
-       $scope.firstHint = true;
-       for (var i = 0; i < $scope.correctWord.length; i++) {
-         $scope.placedWord.push({letter: '_', placedIndex: -1});
-         $scope.change[i] = false;
-       }
+      showFirstHint();
     }
     else if ($scope.firstHint) {
-      $scope.firstHint = false;
-      $scope.secondHint = true;
-
-      var placeGrapheme = function(){
-        var targetArray = $scope.correctWord.split("");
-        var splitGraph = objectIn.graphemeToLearn.split("");
-        var graphemeIndex = $scope.correctWord.indexOf(objectIn.graphemeToLearn);
-
-        j = 0;
-        for (var i = 0; i < targetArray.length; i++) {
-          if(i >= graphemeIndex && i <= (graphemeIndex + (objectIn.graphemeToLearn.length - 1))){
-            $scope.placedWord.push({letter: splitGraph[j], placedIndex: i});
-            j++;
-          } else {
-            $scope.placedWord.push({letter: "_", placedIndex: -1});
-          }
-          $scope.change[i] = false;
-        }
-        // console.log($scope.placedWord);
-      } // end placeGrapheme function
-      placeGrapheme();
+      showSecondHint();
     }
-    else {
-      $scope.finalIncorrect = true;
-    }
+
     $scope.shakeIt = false;
   }
+
+  function showFirstHint(){
+    $scope.firstHint = true;
+    for (var i = 0; i < $scope.correctWord.length; i++) {
+      $scope.placedWord.push({letter: '_', placedIndex: -1});
+      $scope.change[i] = false;
+    }
+  }
+
+  function showSecondHint(){
+    $scope.firstHint = false;
+    $scope.secondHint = true;
+
+    var targetArray = $scope.correctWord.split("");
+    var splitGraph = objectIn.graphemeToLearn.split("");
+    var graphemeIndex = $scope.correctWord.indexOf(objectIn.graphemeToLearn);
+
+    j = 0;
+    for (var i = 0; i < targetArray.length; i++) {
+      if(i >= graphemeIndex && i <= (graphemeIndex + (objectIn.graphemeToLearn.length - 1))){
+        $scope.placedWord.push({letter: splitGraph[j], placedIndex: i});
+        j++;
+      } else {
+        $scope.placedWord.push({letter: "_", placedIndex: -1});
+      }
+      $scope.change[i] = false;
+    }
+    // console.log($scope.placedWord);
+  } // end placeGrapheme function
 
   $scope.underlineWords = function (sentence){
     console.log('in underlineWords');
@@ -244,104 +242,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   };
 }]);
 
-
-//*************** ALL THE PARTIAL CONTROLLER CODE ***************//
-myApp.controller('firstTryController', ['$scope', '$sce', 'SpellingFactory', function($scope, $sce, SpellingFactory){
-  $scope.placedWord = [];
-  $scope.placed = [];
-  console.log('in firstTryController');
-
-  console.log(appMgr.spellingData.word.fullWord);
-  //pull dataIn from Factory
-  var dataIn = SpellingFactory.loadObject();
-
-
-
-  //*************** HINT ONE, MAKE IT WORK *********************//
-  for (var i = 0; i < $scope.correctWord.length; i++) {
-    $scope.placedWord.push({letter: '_', placedIndex: -1});
-  }
-
-  //*************** HINT TWO, MAKE IT WORK *******************//
-
-
-
-
-
-  //
-
-
-
-
-
-  //removes clicked letter from playing field
-
-
-
-  // spellchecking function
-
-
-
-
-
-  if (SpellingFactory.getDataOut().score) {
-    $scope.correctAnswer = true;
-    $scope.allLetter = [];
-    $scope.placedWord = $scope.correctWord.split('').map(function(index){
-      return {
-        letter: index,
-        placedIndex: -1
-      };
-    });
-    $scope.correctPlacement($scope.placedWord);
-    $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
-  }
-
-
-
-
-//**************** MOVE TO DATALOAD CALLBACK ***************//
-//2ND HINT
-  if (SpellingFactory.getDataOut().complete) {
-    //if score is greater than 0
-    if (SpellingFactory.getDataOut().score) {
-      $scope.correctAnswer = true;
-      $scope.allLetter = [];
-      $scope.placedWord = $scope.correctWord.split('').map(function(index){
-        return {
-          letter: index,
-          placedIndex: -1
-        };
-      });
-      $scope.correctPlacement($scope.placedWord);
-       } else {
-      $scope.incorrectAnswer = true;
-    }
-  }
-
-//**************** MOVE TO DATALOAD CALLBACK ***************//
-//1ST HINT
-if (SpellingFactory.getDataOut().score) {
-  $scope.correctAnswer = true;
-  $scope.allLetter = [];
-  $scope.placedWord = $scope.correctWord.split('').map(function(index){
-    return {
-      letter: index,
-      placedIndex: -1
-    };
-  });
-  $scope.correctPlacement($scope.placedWord);
-  $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
-}
-
-}]); // end controller
-
-
-
-
-
-
-//SAFE
 myApp.directive('draggable', function() {
   return function(scope, element) {
     // this gives us the native JS object

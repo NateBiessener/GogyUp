@@ -49,7 +49,7 @@ $(document).ready(function(){
 		    "fullWord": $(this).html(),
 		    "graphemes": ['th','e','se']   // ie. [“c”, “a”, “t”]
   		},
-  	  "graphemeToLearn": 'e_e',
+  	  "graphemeToLearn": 'e',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
