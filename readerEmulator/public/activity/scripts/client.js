@@ -184,4 +184,5 @@ myApp.controller('mainController', ['$scope', '$location', '$sce', 'SpellingFact
   $scope.allLetter = SpellingFactory.displayWord();
   $scope.dataSentence = true;
 
+
 }]);
