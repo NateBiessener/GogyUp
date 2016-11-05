@@ -236,31 +236,43 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     return $sce.trustAsHtml(sentence.replace(appMgr.spellingData.word.fullWord, '<u>'+appMgr.spellingData.word.fullWord+ '</u>'));
   };
 
-  $scope.handleDrop = function(letter, data) {
+  $scope.handleDrop = function(letter, data, target) {
     //tiles already in the playingfield will have a placedIndex property, so we only add to the field if it's not already there
     if (!data.placedindex) {
       $scope.placeLetter(letter, data.index);
     }
+    else {
+      for (var prop in target) {
+        console.log(prop, target[prop]);
+      }
+    }
   };
 
-  $scope.handleDropOut = function(letter, data) {
+  $scope.handleDropOut = function(letter, data, target) {
     $scope.removeLetter(data.index, data.placedindex);
   };
 
   $scope.handleSortDrop = function(letter, data, target){
-    var temp = $scope.placedWord[data.index];
-    if (data.index < target.dataset.index) {
-      for (var i = Number(data.index); i < target.dataset.index; i++){
-        $scope.placedWord[i] = $scope.placedWord[i+1];
+    if (data.placedindex) {
+      var temp = $scope.placedWord[data.index];
+      if (data.index < target.dataset.index) {
+        for (var i = Number(data.index); i < target.dataset.index; i++){
+          $scope.placedWord[i] = $scope.placedWord[i+1];
+        }
       }
+      else {
+        for (var i = Number(data.index); i > target.dataset.index; i--){
+          $scope.placedWord[i] = $scope.placedWord[i-1];
+        }
+      }
+      $scope.placedWord[target.dataset.index] = temp;
     }
     else {
-      for (var i = Number(data.index); i > target.dataset.index; i--){
-        $scope.placedWord[i] = $scope.placedWord[i-1];
-      }
+      $scope.placedWord.splice(Number(target.dataset.index) + 1, 0, {letter: letter, placedIndex: data.index});
+      $scope.placed[data.index] = true;
     }
-    $scope.placedWord[target.dataset.index] = temp;
   };
+
 }]);
 
 myApp.directive('draggable', function() {
