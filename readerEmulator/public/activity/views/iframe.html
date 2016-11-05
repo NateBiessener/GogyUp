@@ -66,8 +66,8 @@
 
       <!-- </div> -->
 
-        <div ng-init="generateLetterTiles()" class="playing-field" droppable drop='handleDrop'>
-          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)">
+        <div ng-init="generateLetterTiles()" class="playing-field" droppable drop="handleDrop">
+          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)" droppable drop="handleSortDrop">
             {{letter.letter}}
           </div>
         </div>

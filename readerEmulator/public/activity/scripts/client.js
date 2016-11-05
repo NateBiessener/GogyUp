@@ -245,7 +245,22 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   $scope.handleDropOut = function(letter, data) {
     $scope.removeLetter(data.index, data.placedindex);
-  }
+  };
+
+  $scope.handleSortDrop = function(letter, data, target){
+    var temp = $scope.placedWord[data.index];
+    if (data.index < target.dataset.index) {
+      for (var i = Number(data.index); i < target.dataset.index; i++){
+        $scope.placedWord[i] = $scope.placedWord[i+1];
+      }
+    }
+    else {
+      for (var i = Number(data.index); i > target.dataset.index; i--){
+        $scope.placedWord[i] = $scope.placedWord[i-1];
+      }
+    }
+    $scope.placedWord[target.dataset.index] = temp;
+  };
 }]);
 
 myApp.directive('draggable', function() {
@@ -324,18 +339,17 @@ myApp.directive('droppable', function() {
           if (e.stopPropagation) e.stopPropagation();
 
           this.classList.remove('over');
-          // console.log(this);
+
+          var dropEl = this;
           var item = document.getElementById(e.dataTransfer.getData('Text'));
-          // for (var prop in item) {
-          //   console.log(prop, item[prop]);
-          // }
           var letter = item.innerText;
           var data = item.dataset;
+
           // call the passed drop function
           scope.$apply(function(scope) {
             var fn = scope.drop();
             if ('undefined' !== typeof fn) {
-              fn(letter, data);
+              fn(letter, data, dropEl);
             }
           });
 
