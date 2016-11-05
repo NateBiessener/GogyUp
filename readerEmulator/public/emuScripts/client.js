@@ -28,54 +28,54 @@ appMgr.dataLoad = function(varName, callback){
 $(document).ready(function(){
   console.log('jq works');
   //hardcoded on-clicks for these words, each will runGame() with appropriate data
-  $('body').on('click', '#grease', function(){
+  $('body').on('click', '#huge', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'grease_1',
+      "activityTitle": 'huge_1',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['g', 'r', 'ea', 'se']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['h','u','g','e']   // ie. [“c”, “a”, “t”]
+  		},
+  	  "graphemeToLearn": 'u',
+  	  "sentence": removeTags($(this).parent().html())
+  	};
+    runGame(objectToSend);
+  });
+  $('body').on('click', '#arrive', function(){
+    //hard coding objects to send
+    var objectToSend = {
+      "activityTitle": 'arrive_1',
+  	  "word": {
+		    "fullWord": $(this).html(),
+		    "graphemes": ['a','rr', 'i', 'v', 'e']   // ie. [“c”, “a”, “t”]
+  		},
+  	  "graphemeToLearn": 'i',
+  	  "sentence": removeTags($(this).parent().html())
+  	};
+    runGame(objectToSend);
+  });
+  $('body').on('click', '#great', function(){
+    //hard coding objects to send
+    var objectToSend = {
+      "activityTitle": 'great_1',
+  	  "word": {
+		    "fullWord": $(this).html(),
+		    "graphemes": ['g','r','ea','t']   // ie. [“c”, “a”, “t”]
   		},
   	  "graphemeToLearn": 'ea',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
   });
-  $('body').on('click', '#these', function(){
+  $('body').on('click', '#knew', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'these_1',
+      "activityTitle": 'knew_1',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['th','e','se']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['n','u']   // ie. [“c”, “a”, “t”]
   		},
-  	  "graphemeToLearn": 'e',
-  	  "sentence": removeTags($(this).parent().html())
-  	};
-    runGame(objectToSend);
-  });
-  $('body').on('click', '#piece', function(){
-    //hard coding objects to send
-    var objectToSend = {
-      "activityTitle": 'piece_1',
-  	  "word": {
-		    "fullWord": $(this).html(),
-		    "graphemes": ['p','ie','ce']   // ie. [“c”, “a”, “t”]
-  		},
-  	  "graphemeToLearn": 'ie',
-  	  "sentence": removeTags($(this).parent().html())
-  	};
-    runGame(objectToSend);
-  });
-  $('body').on('click', '#seem', function(){
-    //hard coding objects to send
-    var objectToSend = {
-      "activityTitle": 'seem_1',
-  	  "word": {
-		    "fullWord": $(this).html(),
-		    "graphemes": ['s','ee','m']   // ie. [“c”, “a”, “t”]
-  		},
-  	  "graphemeToLearn": 'ee',
+  	  "graphemeToLearn": 'n',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
