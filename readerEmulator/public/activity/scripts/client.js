@@ -111,18 +111,34 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   $scope.allLetter = generateLetterTiles();
 
   //remove letter from generated tiles and place in playing field
-  $scope.placeLetter = function(letter, index){
+  $scope.placeLetter = function(letter, index, targetIndex){
     if ($scope.firstHint || $scope.secondHint){
       placedWord = $scope.placedWord.map(function(index){
         return index.letter;
       });
       if (placedWord.indexOf('_') >= 0) {
-        $scope.placedWord[placedWord.indexOf('_')] = {letter: letter, placedIndex: index};
+        if (targetIndex) {
+          if ($scope.placedWord[targetIndex].letter === '_') {
+            $scope.placedWord[targetIndex] = {letter: letter, placedIndex: index};
+          }
+          else {
+            $scope.placedWord.splice(placedWord.indexOf('_'), 1);
+            $scope.placedWord.splice(Number(targetIndex), 0, {letter: letter, placedIndex: index});
+          }
+        }
+        else{
+          $scope.placedWord[placedWord.indexOf('_')] = {letter: letter, placedIndex: index};
+        }
         $scope.placed[index] = true;
       }
     }
     else {
-      $scope.placedWord.push({letter: letter, placedIndex: index});
+      if (targetIndex) {
+        $scope.placedWord.splice(Number(targetIndex) + 1, 0, {letter: letter, placedIndex: index});
+      }
+      else{
+        $scope.placedWord.push({letter: letter, placedIndex: index});
+      }
       $scope.placed[index] = true;
     }
   }; // end placeLetter function
@@ -241,15 +257,13 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     if (!data.placedindex) {
       $scope.placeLetter(letter, data.index);
     }
-    else {
-      for (var prop in target) {
-        console.log(prop, target[prop]);
-      }
-    }
   };
 
   $scope.handleDropOut = function(letter, data, target) {
-    $scope.removeLetter(data.index, data.placedindex);
+    //only call $scope.removeLetter if the tile is a placed tile
+    if (data.placedindex) {
+      $scope.removeLetter(data.index, data.placedindex);
+    }
   };
 
   $scope.handleSortDrop = function(letter, data, target){
@@ -268,8 +282,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       $scope.placedWord[target.dataset.index] = temp;
     }
     else {
-      $scope.placedWord.splice(Number(target.dataset.index) + 1, 0, {letter: letter, placedIndex: data.index});
-      $scope.placed[data.index] = true;
+      $scope.placeLetter(letter, data.index, target.dataset.index);
     }
   };
 
