@@ -237,7 +237,10 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   };
 
   $scope.handleDrop = function(letter, data) {
-    $scope.placeLetter(letter, data.index);
+    //tiles already in the playingfield will have a placedIndex property, so we only add to the field if it's not already there
+    if (!data.placedindex) {
+      $scope.placeLetter(letter, data.index);
+    }
   };
 
   $scope.handleDropOut = function(letter, data) {
