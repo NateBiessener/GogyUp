@@ -41,7 +41,7 @@
 
 </head>
 <body ng-controller="mainController">
-  <div ng-class="{'shake': shakeIt}">
+  <div ng-class="{'shake': shakeIt}"  droppable drop='handleDropOut'>
   <div ng-class="{'pyro': fireworks}">
     <!-- before & after divs are used for fireworks animation -->
     <div class="before"></div>
@@ -67,12 +67,12 @@
       <!-- </div> -->
 
         <div ng-init="generateLetterTiles()" class="playing-field" droppable drop='handleDrop'>
-          <div ng-repeat="letter in placedWord track by $index" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)">
+          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)">
             {{letter.letter}}
           </div>
         </div>
         <div class="wtf">
-          <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
+          <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" data-index="{{$index}}" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
             {{letter}}
           </div>
         </div>

@@ -112,7 +112,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   //remove letter from generated tiles and place in playing field
   $scope.placeLetter = function(letter, index){
-    console.log($scope.firstHint, $scope.secondHint);
     if ($scope.firstHint || $scope.secondHint){
       placedWord = $scope.placedWord.map(function(index){
         return index.letter;
@@ -237,9 +236,13 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     return $sce.trustAsHtml(sentence.replace(appMgr.spellingData.word.fullWord, '<u>'+appMgr.spellingData.word.fullWord+ '</u>'));
   };
 
-  $scope.handleDrop = function(letter, index) {
-    $scope.placeLetter(letter, index);
+  $scope.handleDrop = function(letter, data) {
+    $scope.placeLetter(letter, data.index);
   };
+
+  $scope.handleDropOut = function(letter, data) {
+    $scope.removeLetter(data.index, data.placedindex);
+  }
 }]);
 
 myApp.directive('draggable', function() {
@@ -319,19 +322,17 @@ myApp.directive('droppable', function() {
 
           this.classList.remove('over');
           // console.log(this);
-          // var binId = this.id;
           var item = document.getElementById(e.dataTransfer.getData('Text'));
           // for (var prop in item) {
           //   console.log(prop, item[prop]);
           // }
           var letter = item.innerText;
-          var index = item.id[item.id.length - 1];
-          // this.appendChild(item);
+          var data = item.dataset;
           // call the passed drop function
           scope.$apply(function(scope) {
             var fn = scope.drop();
             if ('undefined' !== typeof fn) {
-              fn(letter, index);
+              fn(letter, data);
             }
           });
 
