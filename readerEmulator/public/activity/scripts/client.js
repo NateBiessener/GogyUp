@@ -66,7 +66,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   var generateLetterTiles = function(){
     var possible = "abcdefghijklmnopqrstuvwxyz";
-    console.log('in displayWord');
+    console.log('in generateLetterTiles');
     var wordArray = [];
     //make word into an array of letters
     for(var i= 0; i< objectIn.word.fullWord.length; i++){
@@ -98,13 +98,13 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       });
       if (collapsed.includes(objectIn.word.fullWord)) {
         console.log('rescrambling');
-        wordArray = displayWord();
+        wordArray = generateLetterTiles();
       }
       return wordArray;
-    }
+    };
     //the letters in wordArray will be mixed around
     return shuffle(wordArray);
-  }; // end displayWord function
+  }; // end generateLetterTiles function
   //generate letter tiles onLoad
   $scope.allLetter = generateLetterTiles();
 
@@ -320,7 +320,6 @@ myApp.controller('firstTryController', ['$scope', '$sce', 'SpellingFactory', fun
   $scope.handleDrop = function(letter, index) {
     $scope.placeLetter(letter, index);
   };
-}]); // end controller
 
 
 //**************** MOVE TO DATALOAD CALLBACK ***************//
@@ -357,7 +356,7 @@ if (SpellingFactory.getDataOut().score) {
   $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
 }
 
-
+}]); // end controller
 
 
 
@@ -390,7 +389,7 @@ myApp.directive('draggable', function() {
       },
       false
     );
-  }
+  };
 });
 
 myApp.directive('droppable', function() {
@@ -462,5 +461,5 @@ myApp.directive('droppable', function() {
         false
       );
     }
-  }
+  };
 });
