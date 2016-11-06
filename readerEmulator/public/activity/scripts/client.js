@@ -116,14 +116,15 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       placedWord = $scope.placedWord.map(function(index){
         return index.letter;
       });
+      //only add to playing field if there is an '_' left
       if (placedWord.indexOf('_') >= 0) {
-        if (targetIndex) {
+        if (targetIndex >= 0) {
           if ($scope.placedWord[targetIndex].letter === '_') {
             $scope.placedWord[targetIndex] = {letter: letter, placedIndex: index};
           }
           else {
             $scope.placedWord.splice(placedWord.indexOf('_'), 1);
-            $scope.placedWord.splice(Number(targetIndex), 0, {letter: letter, placedIndex: index});
+            $scope.placedWord.splice(targetIndex, 0, {letter: letter, placedIndex: index});
           }
         }
         else{
@@ -133,7 +134,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       }
     }
     else {
-      if (targetIndex) {
+      if (targetIndex >= 0) {
         $scope.placedWord.splice(Number(targetIndex) + 1, 0, {letter: letter, placedIndex: index});
       }
       else{
@@ -286,6 +287,13 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     }
   };
 
+  $scope.handleLeftDrop = function(letter, data, target){
+    $scope.placeLetter(letter, data.index, 0);
+  };
+
+  $scope.handleRightDrop = function(letter, data, target){
+    $scope.placeLetter(letter, data.index, $scope.placedWord.length - 1);
+  };
 }]);
 
 myApp.directive('draggable', function() {
