@@ -39,6 +39,8 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
       if (data.complete) {
         if (data.score) {
+          $scope.$parent.fireworks = true;
+          $scope.correctAnswer = true;
           //*************** ADD FIREWORKS AND SHOW CORRECT SPELLING IN PLAYING FIELD ******//
         }
         else {
@@ -283,18 +285,16 @@ if (SpellingFactory.getDataOut().score) {
   $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
 }
 
-}]); // end controller
-
   $scope.handleSortDrop = function(letter, data, target){
     if (data.placedindex) {
       var temp = $scope.placedWord[data.index];
       if (data.index < target.dataset.index) {
-        for (var i = Number(data.index); i < target.dataset.index; i++){
+        for (i = Number(data.index); i < target.dataset.index; i++){
           $scope.placedWord[i] = $scope.placedWord[i+1];
         }
       }
       else {
-        for (var i = Number(data.index); i > target.dataset.index; i--){
+        for (i = Number(data.index); i > target.dataset.index; i--){
           $scope.placedWord[i] = $scope.placedWord[i-1];
         }
       }
@@ -312,7 +312,8 @@ if (SpellingFactory.getDataOut().score) {
   $scope.handleRightDrop = function(letter, data, target){
     $scope.placeLetter(letter, data.index, $scope.placedWord.length - 1);
   };
-}]);
+
+}]); // end controller
 
 myApp.directive('draggable', function() {
   return function(scope, element) {
