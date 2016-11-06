@@ -21,6 +21,7 @@ header #close {
   clear: both;
   background-color: #F5F5F5;
   display: block;
+  display: flex;
   margin: auto;
   margin-top: 4vh;
   margin-bottom: 4vh;
@@ -30,6 +31,25 @@ header #close {
   border-top: none;
   border-bottom: 1px solid #DDD;
   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+}
+
+.playing-field .data-tiles {
+  margin: 0.5vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.leftField {
+  flex-basis: 50%;
+  flex-shrink: 1;
+  height: 100%;
+  float: left;
+}
+
+.rightField {
+  flex-basis: 50%;
+  flex-shrink: 1;
+  height: 100%;
 }
 
 .data-tiles /*span[class^="char"]*/ {

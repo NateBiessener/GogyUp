@@ -72,47 +72,6 @@ myApp.factory('SpellingFactory', [function(){
     dataOut.sentenceTTSClicks++;
     console.log(dataOut.sentenceTTSClicks);
   };
-  var displayWord = function(){
-    var possible = "abcdefghijklmnopqrstuvwxyz";
-    console.log('in displayWord');
-    var wordArray = [];
-    //make word into an array of letters
-    for(var i= 0; i< objectIn.word.fullWord.length; i++){
-      wordArray.push(objectIn.word.fullWord.charAt(i));
-    }
-    var correctWordArray = wordArray;
-    console.log(correctWordArray);
-    //generate 2 random letters to add to array
-    for( var j=0; j < 2; j++){
-      wordArray.push(possible.charAt(Math.floor(Math.random() * possible.length)));
-    }
-    //shuffle letters into different positions on the array
-    function shuffle(wordArray) {
-      var m = wordArray.length, t, i;
-
-      // While there remain elements to shuffle…
-      while (m) {
-
-        // Pick a remaining element…
-        i = Math.floor(Math.random() * m--);
-
-        // And swap it with the current element.
-        t = wordArray[m];
-        wordArray[m] = wordArray[i];
-        wordArray[i] = t;
-      }
-      var collapsed = wordArray.reduce(function(start, index){
-        return start + index;
-      });
-      if (collapsed.includes(objectIn.word.fullWord)) {
-        console.log('rescrambling');
-        wordArray = displayWord();
-      }
-      return wordArray;
-    }
-    //the letters in wordArray will be mixed around
-    return shuffle(wordArray);
-  }; // end displayWord function
 
   return {
     storeObject: storeObject,
@@ -120,7 +79,6 @@ myApp.factory('SpellingFactory', [function(){
       return objectIn;
     },
     checkSpelling: checkSpelling,
-    displayWord: displayWord,
     timeSave: timeSave,
     setComplete: setComplete,
     setScore: setScore,
