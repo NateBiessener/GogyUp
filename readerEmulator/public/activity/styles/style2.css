@@ -80,15 +80,15 @@ header #close {
 }
 
 .changeBackground{
-  background-color: #c7dbc3;
+  background-color: #B2CDAC;
 }
 @font-face {
-    font-family: NewsGothic, news-gothic-std, Helvetica, Arial, sans-serif;
+    font-family: 'News Cycle', Helvetica, Arial, sans-serif;
     src: url(./fonts/newsgothicstd.otf);
 }
 
 .font-change {
-  font-family: OpenDyslexic;
+  font-family: OpenDyslexicMono-Regular;
   src: url(./fonts/OpenDyslexicMono-Regular.otf)
 }
 

@@ -35,7 +35,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
 
 
-  $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,"_______"));
+  $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,"________"));
   // console.log($scope.displaySentence);
 
   $scope.getRidOfMe = function(){
