@@ -273,11 +273,21 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   };
 
   $scope.handleLeftDrop = function(letter, data, target){
-    $scope.placeLetter(letter, data.index, 0);
+    if (data.placedindex) {
+      $scope.handleSortDrop(letter, data.index, 0);
+    }
+    else {
+      $scope.placeLetter(letter, data.index, 0);
+    }
   };
 
   $scope.handleRightDrop = function(letter, data, target){
-    $scope.placeLetter(letter, data.index, $scope.placedWord.length - 1);
+    if (data.placedindex) {
+      $scope.handleSortDrop(letter, data.index, $scope.placedWord.length - 1);
+    }
+    else {
+      $scope.placeLetter(letter, data.index, $scope.placedWord.length - 1);
+    }
   };
 
   appMgr.dataLoad(appMgr.spellingData.activityTitle, function(data){
