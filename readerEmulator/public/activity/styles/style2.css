@@ -88,15 +88,14 @@ header #close {
 }
 
 .font-change {
-  font-family: OpenDyslexicMono-Regular;
-  src: url(./fonts/OpenDyslexicMono-Regular.otf)
+  font-family: 'OpenDyslexicMono-Regular';
+  /*src: url(./fonts/OpenDyslexicMono-Regular.otf)*/
 }
 
 .logo {
   width: 4%;
   height: auto;
   margin-top: 2vh;
-  /*margin: 2vh auto;*/
 }
 
 button {
