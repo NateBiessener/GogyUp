@@ -32,28 +32,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   var objectIn = appMgr.spellingData;
   $scope.correctWord = objectIn.word.fullWord;
-  appMgr.dataLoad(appMgr.spellingData.activityTitle, function(data){
-    // console.log(data);
-    if (data) {
-      SpellingFactory.setDataOut(data);
 
-      if (data.complete) {
-        if (data.score) {
-          $scope.$parent.fireworks = true;
-          $scope.correctAnswer = true;
-        }
-        else if(data.score === 0){
-          $scope.finalIncorrect = true;
-
-          //*************** SHOW CORRECT SPELLING *****************//
-        }
-      } else if (data.attempts.attemptTwo) {
-        showSecondHint();
-      } else if (data.attempts.attemptOne) {
-        showFirstHint();
-      }
-    }
-  });
 
 
   $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,"_______"));
@@ -273,21 +252,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   };
 
-//**************** MOVE TO DATALOAD CALLBACK ***************//
-//1ST HINT
-if (SpellingFactory.getDataOut().score) {
-  $scope.correctAnswer = true;
-  $scope.allLetter = [];
-  $scope.placedWord = $scope.correctWord.split('').map(function(index){
-    return {
-      letter: index,
-      placedIndex: -1
-    };
-  });
-  $scope.correctPlacement($scope.placedWord);
-  $scope.$parent.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
-}
-
   $scope.handleSortDrop = function(letter, data, target){
     if (data.placedindex) {
       var temp = $scope.placedWord[data.index];
@@ -315,6 +279,45 @@ if (SpellingFactory.getDataOut().score) {
   $scope.handleRightDrop = function(letter, data, target){
     $scope.placeLetter(letter, data.index, $scope.placedWord.length - 1);
   };
+
+  appMgr.dataLoad(appMgr.spellingData.activityTitle, function(data){
+    // console.log(data);
+    if (data) {
+      SpellingFactory.setDataOut(data);
+
+      if (data.complete) {
+        //if score > 0
+        if (data.score) {
+          $scope.$parent.fireworks = true;
+          $scope.correctAnswer = true;
+          $scope.allLetter = [];
+          $scope.placedWord = $scope.correctWord.split('').map(function(index){
+            return {
+              letter: index,
+              placedIndex: -1
+            };
+          });
+          $scope.correctPlacement($scope.placedWord);
+          $scope.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
+        }
+        else if(data.score === 0){
+          $scope.finalIncorrect = true;
+          $scope.allLetter = [];
+          $scope.placedWord = $scope.correctWord.split('').map(function(index){
+            return {
+              letter: index,
+              placedIndex: -1
+            };
+          });
+          $scope.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
+        }
+      } else if (data.attempts.attemptTwo) {
+        showSecondHint();
+      } else if (data.attempts.attemptOne) {
+        showFirstHint();
+      }
+    }
+  });
 
 }]); // end controller
 

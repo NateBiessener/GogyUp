@@ -85,7 +85,7 @@
         <div ng-show="incorrectAnswer">Try again!</div>
         <div ng-if="finalIncorrect">Correct spelling: {{correctWord}}</div>
         <a ng-show="incorrectAnswer" ng-click="tryAgain()">Next Try</a>
-        <button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="checkButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
+        <button ng-hide="incorrectAnswer || correctAnswer || finalIncorrect" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="checkButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
       </div>
     </div>
   </div>
