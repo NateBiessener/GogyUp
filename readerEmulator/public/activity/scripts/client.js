@@ -18,12 +18,12 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   // console.log(appMgr.spellingData);
 
   $scope.speakSentence = function(){
-    responsiveVoice.speak(appMgr.spellingData.sentence);
+    responsiveVoice.speak(appMgr.spellingData.sentence, 'US English Female');
     SpellingFactory.speakSentenceClick();
   };
 
   $scope.speakWord = function(){
-    responsiveVoice.speak(appMgr.spellingData.word.fullWord);
+    responsiveVoice.speak(appMgr.spellingData.word.fullWord, 'US English Female');
     SpellingFactory.speakWordClick();
   };
 
