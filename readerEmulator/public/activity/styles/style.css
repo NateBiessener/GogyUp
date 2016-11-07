@@ -13,16 +13,6 @@
     max-width: 960px;
     width: 80%;
 }*/
-@font-face {
-    font-family: NewsGothic, news-gothic-std, Helvetica, Arial, sans-serif;
-    src: url(./fonts/newsgothicstd.otf);
-}
-
-.font-change {
-  font-family: OpenDyslexic;
-  src: url(./fonts/OpenDyslexicMono-Regular.otf)
-}
-
 /*.serif{
   font-family: "Times New Roman";
 }*/
