@@ -41,9 +41,10 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
         if (data.score) {
           $scope.$parent.fireworks = true;
           $scope.correctAnswer = true;
-          //*************** ADD FIREWORKS AND SHOW CORRECT SPELLING IN PLAYING FIELD ******//
         }
-        else {
+        else if(data.score === 0){
+          $scope.finalIncorrect = true;
+
           //*************** SHOW CORRECT SPELLING *****************//
         }
       } else if (data.attempts.attemptTwo) {
@@ -189,7 +190,9 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     } else if($scope.secondHint){
       $scope.displaySent = $scope.underlineWords(appMgr.spellingData.sentence);
       $scope.correctPlacement(placedWord);
+      SpellingFactory.setComplete();
       $scope.finalIncorrect = true;
+      $scope.$parent.shakeIt = true;
     }
     else {
       $scope.correctPlacement(placedWord);
