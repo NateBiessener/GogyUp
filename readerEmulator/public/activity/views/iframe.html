@@ -62,7 +62,7 @@
           <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;&nbsp;Sentence</button>
         </div>
 
-        <img class="logo" src="../styles/images/test.png" ng-click="dataSentence = !dataSentence; dataTiles = !dataTiles">
+        <img class="logo" src="../styles/images/test.png" ng-click="dataSentence = !dataSentence">
 
 
       <!-- </div> -->
@@ -71,7 +71,7 @@
           <div class="leftField" droppable drop="handleLeftDrop">
 
           </div>
-          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}; dataTiles ? '@font-face': 'font-change" class="dataTiles" ng-click="removeLetter($index, letter.placedIndex)" droppable drop="handleSortDrop">
+          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}" class="data-tiles" ng-click="removeLetter($index, letter.placedIndex)" droppable drop="handleSortDrop">
             {{letter.letter}}
           </div>
           <div class="rightField" droppable drop="handleRightDrop">
@@ -79,7 +79,7 @@
           </div>
         </div>
         <div class="wtf">
-          <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" data-index="{{$index}}" ng-class="dataTiles ? '@font-face': 'font-change'" ng-click="placeLetter(letter, $index)" class="dataTiles" ng-hide="placed[$index]">
+          <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" data-index="{{$index}}" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
             {{letter}}
           </div>
         </div>

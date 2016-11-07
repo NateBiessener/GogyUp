@@ -11,7 +11,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   $scope.secondHint = false;
   //used to toggle dislexia font
   $scope.dataSentence = true;
-  $scope.dataTiles = true;
 
   var sentence = appMgr.spellingData.sentence;
   var word = appMgr.spellingData.word.fullWord;
