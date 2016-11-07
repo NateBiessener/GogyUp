@@ -21,6 +21,7 @@ header #close {
   clear: both;
   background-color: #F5F5F5;
   display: block;
+  display: flex;
   margin: auto;
   margin-top: 4vh;
   margin-bottom: 4vh;
@@ -32,7 +33,26 @@ header #close {
   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
 }
 
-.data-tiles /*span[class^="char"]*/ {
+.playing-field .dataTiles {
+  margin: 0.5vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.leftField {
+  flex-basis: 50%;
+  flex-shrink: 1;
+  height: 100%;
+  float: left;
+}
+
+.rightField {
+  flex-basis: 50%;
+  flex-shrink: 1;
+  height: 100%;
+}
+
+.dataTiles /*span[class^="char"]*/ {
   width: 5vw;
   height: 5vw;
   min-height: 5vmax;
@@ -60,15 +80,15 @@ header #close {
 }
 
 .changeBackground{
-  background-color: #c7dbc3;
+  background-color: #B2CDAC;
 }
 @font-face {
-    font-family: NewsGothic, news-gothic-std, Helvetica, Arial, sans-serif;
+    font-family: 'News Cycle', Helvetica, Arial, sans-serif;
     src: url(./fonts/newsgothicstd.otf);
 }
 
 .font-change {
-  font-family: OpenDyslexic;
+  font-family: OpenDyslexicMono-Regular;
   src: url(./fonts/OpenDyslexicMono-Regular.otf)
 }
 

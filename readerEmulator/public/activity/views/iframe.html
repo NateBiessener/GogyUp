@@ -61,18 +61,25 @@
           <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;&nbsp;Word</button>
           <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;&nbsp;Sentence</button>
         </div>
-        <img class="logo"  src="../styles/images/test.png">
-        <br>
-        <button ng-click="dataSentence = !dataSentence">ChangeFont</button>
+
+        <img class="logo" src="../styles/images/test.png" ng-click="dataSentence = !dataSentence; dataTiles = !dataTiles">
+
+
       <!-- </div> -->
 
         <div ng-init="generateLetterTiles()" class="playing-field" droppable drop="handleDrop">
-          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}" class="data-tiles" style="margin: 5px; margin-top: 40px;"  ng-click="removeLetter($index, letter.placedIndex)" droppable drop="handleSortDrop">
+          <div class="leftField" droppable drop="handleLeftDrop">
+
+          </div>
+          <div ng-repeat="letter in placedWord track by $index" draggable id="placedTile{{$index}}" data-index="{{$index}}" data-placedindex="{{letter.placedIndex}}" ng-class="{'changeBackground': change[$index]}; dataTiles ? '@font-face': 'font-change" class="dataTiles" ng-click="removeLetter($index, letter.placedIndex)" droppable drop="handleSortDrop">
             {{letter.letter}}
+          </div>
+          <div class="rightField" droppable drop="handleRightDrop">
+
           </div>
         </div>
         <div class="wtf">
-          <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" data-index="{{$index}}" ng-click="placeLetter(letter, $index)" class="data-tiles" ng-hide="placed[$index]">
+          <div ng-repeat="letter in allLetter track by $index" draggable id="letterTile{{$index}}" data-index="{{$index}}" ng-class="dataTiles ? '@font-face': 'font-change'" ng-click="placeLetter(letter, $index)" class="dataTiles" ng-hide="placed[$index]">
             {{letter}}
           </div>
         </div>
@@ -80,7 +87,7 @@
         <div ng-show="incorrectAnswer">Try again!</div>
         <div ng-if="finalIncorrect">Correct spelling: {{correctWord}}</div>
         <a ng-show="incorrectAnswer" ng-click="tryAgain()">Next Try</a>
-        <button ng-hide="incorrectAnswer || correctAnswer" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="checkButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
+        <button ng-hide="incorrectAnswer || correctAnswer || finalIncorrect" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="checkButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
       </div>
     </div>
   </div>

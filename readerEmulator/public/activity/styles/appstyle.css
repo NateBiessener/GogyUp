@@ -5,9 +5,9 @@ body {
 
 .story{
   font-size: 20px;
-  margin-left: 350px;
+  margin-left: auto;
+  margin-right: auto;
   width: 50%;
-
 }
 p{
   text-indent: 40px;
