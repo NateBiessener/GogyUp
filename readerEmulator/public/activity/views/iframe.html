@@ -52,17 +52,17 @@
     </header>
     <!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <div class="container">
+    <div ng-class="container? '@font-face': 'font-change'">
     <div class="row">
       <!-- <div class="one-half column" style="margin-top: 25%"> -->
-        <div ng-class="dataSentence ? '@font-face': 'font-change'"><h3 ng-bind-html="displaySent"><h3></div>
+        <div><h3 ng-bind-html="displaySent"><h3></div>
 
         <div class="button-container">
           <button class="play-word" ng-click='speakWord()'><i class="fa fa-volume-up" id="play-word" aria-hidden="true"></i>&nbsp;&nbsp;Word</button>
           <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;&nbsp;Sentence</button>
         </div>
 
-        <img class="logo" src="../styles/images/test.png" ng-click="dataSentence = !dataSentence">
+        <img class="logo" src="../styles/images/test.png" ng-click="container = !container">
 
 
       <!-- </div> -->
