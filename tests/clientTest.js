@@ -1,19 +1,11 @@
 describe('mainController', function(){
   beforeEach(module('myApp'));
 
-  describe('placeLetter()', function(){
-    it('place letter in array', inject(function($controller){
-      var scope = {};
-      console.log('here in test');
+  describe('best spelling game ever', function(){
+    it('says whether this is the best spelling game ever', function(){
+      var bestSpellingGame = true;
 
-      var firstTryController = $controller('firstTryController', {
-        $scope: scope
-
-      });
-
-      scope.placeLetter('X');
-
-      scope.placedWord.should.contain('X');
-    }));
+      bestSpellingGame.should.equal(true);
+    });
   });
 });
