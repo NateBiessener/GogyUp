@@ -51,7 +51,7 @@ module.exports = function(config) {
 
       // experimental
       preserveDescribeNesting: false, // folded suites stay folded
-      foldAll: false, // reports start folded (only with preserveDescribeNesting) 
+      foldAll: false, // reports start folded (only with preserveDescribeNesting)
     },
 
     // web server port
@@ -88,8 +88,7 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-phantomjs-launcher',
       'karma-chai',
-      'karma-chrome-launcher',
-      'karma-html-reporter'
+      'karma-chrome-launcher'
     ]
   });
 };
