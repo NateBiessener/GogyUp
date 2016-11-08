@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'fixture'],
 
 
     // list of files / patterns to load in the browser
@@ -19,40 +19,29 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'readerEmulator/public/activity/scripts/client.js',
       'readerEmulator/public/activity/scripts/factories/SpellingFactory.js',
+      'fixtures/**/*',
       'tests/**/*.js'
     ],
-
 
     // list of files to exclude
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/*.html'   : ['html2js'],
+      '**/*.json'   : ['json_fixtures']
     },
 
+    jsonFixturesPreprocessor: {
+      variableName: '__json__'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'html'],
-
-    // the default configuration
-    htmlReporter: {
-      outputDir: 'karma_html', // where to put the reports
-      templatePath: null, // set if you moved jasmine_template.html
-      focusOnFailures: true, // reports show failures on start
-      namedFiles: false, // name files instead of creating sub-directories
-      pageTitle: null, // page title for reports; browser info by default
-      urlFriendlyName: false, // simply replaces spaces with _ for files/dirs
-      reportName: 'report-summary-filename', // report summary filename; browser info by default
-
-      // experimental
-      preserveDescribeNesting: false, // folded suites stay folded
-      foldAll: false, // reports start folded (only with preserveDescribeNesting)
-    },
+    reporters: ['progress'],
 
     // web server port
     port: 9876,
@@ -88,7 +77,10 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-phantomjs-launcher',
       'karma-chai',
-      'karma-chrome-launcher'
+      'karma-chrome-launcher',
+      'karma-fixture',
+      'karma-html2js-preprocessor',
+      'karma-json-fixtures-preprocessor'
     ]
   });
 };
