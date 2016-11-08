@@ -53,19 +53,19 @@ header #close {
 }
 
 .data-tiles /*span[class^="char"]*/ {
-  width: 5vw;
-  height: 5vw;
-  min-height: 5vmax;
-  min-width: 5vmax;
+  width: 3vw;
+  height: 3vw;
+  min-height: 3vmax;
+  min-width: 3vmax;
 	display: inline-block;
   background: #BDBDBD;
 	color: #2a1f1b;
 	border-radius: 4px;
   /*font-family: NewsGothic, news-gothic-std, 'Helvetica', sans-serif;*/
-  font-size: 3vmax;
+  font-size: 2vmax;
 	font-weight: 400;
   /*margin: 2vw 4vw;*/
-  margin: 1vw 4vw;
+  margin: 0.5vw 2vw;
 
 	text-align: center;
 	cursor: default;
