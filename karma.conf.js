@@ -41,7 +41,18 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'html'],
+
+    htmlReporter: {
+      outputFile: 'tests/units.html',
+
+      // Optional
+      pageTitle: 'Spelling Game Tests',
+      subPageTitle: '',
+      groupSuites: true,
+      useCompactStyle: true,
+      useLegacyStyle: true
+    },
 
     // web server port
     port: 9876,
@@ -67,7 +78,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
@@ -80,7 +91,8 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-fixture',
       'karma-html2js-preprocessor',
-      'karma-json-fixtures-preprocessor'
+      'karma-json-fixtures-preprocessor',
+      'karma-htmlfile-reporter'
     ]
   });
 };
