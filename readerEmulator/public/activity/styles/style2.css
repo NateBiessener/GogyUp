@@ -89,7 +89,7 @@ header #close {
 
 .font-change {
   font-family: OpenDyslexic;
-  src: url(./fonts/OpenDyslexicMono-Regular.otf)
+  src: url(./fonts/OpenDyslexicMono-Regular.otf);
 }
 
 .logo {
