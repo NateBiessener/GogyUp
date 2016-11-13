@@ -217,9 +217,9 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
     var targetArray = $scope.correctWord.split("");
     var splitGraph = objectIn.graphemeToLearn.split("");
-    var graphemeIndex = $scope.correctWord.indexOf(objectIn.graphemeToLearn);
+    var graphemeIndex = $scope.correctWord.indexOf(objectIn.graphemeToLearn[0]);
 
-    j = 0;
+    var j = 0;
     for (var i = 0; i < targetArray.length; i++) {
       if(i >= graphemeIndex && i <= (graphemeIndex + (objectIn.graphemeToLearn.length - 1))){
         $scope.placedWord.push({letter: splitGraph[j], placedIndex: i});
