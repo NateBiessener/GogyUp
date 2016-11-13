@@ -130,7 +130,7 @@ describe('mainController', function(){
 
   describe('showFirstHint()', function(){
     it('should show first hint', function(){
-      var bestSpellingGame = true;
+      var bestSpellingGame = false;
       var passed = '';
       //wasting time for show
       for (var x = 0; x < 100; x++){
