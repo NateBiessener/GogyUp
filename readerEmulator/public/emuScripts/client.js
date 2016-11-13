@@ -57,7 +57,8 @@ $(document).ready(function(){
   $('body').on('click', '#speak', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'speak_1',
+      //set to empty to test activityTitle generation when none is provided
+      "activityTitle": '',
   	  "word": {
 		    "fullWord": $(this).html(),
 		    "graphemes": ['s','p','ea','k']   // ie. [“c”, “a”, “t”]

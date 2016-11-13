@@ -9,13 +9,23 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   $scope.change = [];
   $scope.firstHint = false;
   $scope.secondHint = false;
-  //used to toggle dislexia font
-  $scope.container = true;
+  //used to toggle dyslexia font
+  $scope.dyslexia = true;
 
   var sentence = appMgr.spellingData.sentence;
   var word = appMgr.spellingData.word.fullWord;
 
   // console.log(appMgr.spellingData);
+
+  //send dataIn to Factory
+  SpellingFactory.storeObject(appMgr.spellingData);
+
+  var objectIn = appMgr.spellingData;
+  $scope.correctWord = objectIn.word.fullWord;
+
+  $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,'<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'));
+  // console.log($scope.displaySentence);
+
 
   $scope.speakSentence = function(){
     responsiveVoice.speak(appMgr.spellingData.sentence, 'US English Female');
@@ -27,23 +37,12 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     SpellingFactory.speakWordClick();
   };
 
-  //send dataIn to Factory
-  SpellingFactory.storeObject(appMgr.spellingData);
-
-  var objectIn = appMgr.spellingData;
-  $scope.correctWord = objectIn.word.fullWord;
-
-
-
-  $scope.displaySent = $sce.trustAsHtml(sentence.replace(word,'<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'));
-  // console.log($scope.displaySentence);
-
   $scope.getRidOfMe = function(){
     var currentTime = Date.now();
     SpellingFactory.finishTime(currentTime);
     var dataOut = SpellingFactory.getDataOut();
     appMgr.dataSave(dataOut.activityTitle, dataOut, function(){
-      appMgr.setActivityComplete();
+      appMgr.setActivityComplete(dataOut);
     });
   };
 

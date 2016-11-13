@@ -50,10 +50,16 @@ myApp.factory('SpellingFactory', [function(){
 
   var objectIn = {};
 
+  var setActivityTitle = function(word){
+    word += Date.now();
+    return word;
+  }
+
   var storeObject = function(object){
     objectIn = object;
     dataOut.word = object.word;
-    dataOut.activityTitle = object.activityTitle;
+    dataOut.activityTitle = object.activityTitle || setActivityTitle(object.word.fullWord);
+    // console.log(dataOut.activityTitle);
   };
 
   var checkSpelling = function(word){
