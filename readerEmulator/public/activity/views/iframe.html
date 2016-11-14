@@ -54,7 +54,7 @@
     </header>
     <!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <div ng-class="container ? '@font-face': 'font-change'">
+    <div ng-class="dyslexia ? '@font-face': 'font-change'">
     <div class="row">
       <!-- <div class="one-half column" style="margin-top: 25%"> -->
         <div><h3 ng-bind-html="displaySent"><h3></div>
@@ -64,7 +64,7 @@
           <button class="play-sentence" ng-click='speakSentence()'><i class="fa fa-volume-up" id="play-sentence" aria-hidden="true"></i>&nbsp;&nbsp;Sentence</button>
         </div>
 
-        <img class="logo" src="../styles/images/test.png" ng-click="container = !container">
+        <img class="logo" src="../styles/images/test.png" ng-click="dyslexia = !dyslexia">
 
 
       <!-- </div> -->
@@ -85,10 +85,10 @@
             {{letter}}
           </div>
         </div>
-        <div ng-show="correctAnswer">Great job!</div>
-        <div ng-show="incorrectAnswer">Try again!</div>
+        <!-- <div ng-show="correctAnswer">Great job!</div> -->
+        <!-- <div ng-show="incorrectAnswer"></div> -->
         <div ng-if="finalIncorrect">Correct spelling: {{correctWord}}</div>
-        <button ng-show="incorrectAnswer" ng-click="tryAgain()">Next Try</button>
+        <button ng-show="incorrectAnswer" ng-click="tryAgain()">Try again!</button>
         <button ng-hide="incorrectAnswer || correctAnswer || finalIncorrect" ng-click="checkSpelling(placedWord); correctPlacement(placedWord)" class="checkButton"><i class="fa fa-check" id="button-check" aria-hidden="true"></i>&nbsp;Check Spelling</button>
       </div>
     </div>

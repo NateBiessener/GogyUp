@@ -28,54 +28,55 @@ appMgr.dataLoad = function(varName, callback){
 $(document).ready(function(){
   console.log('jq works');
   //hardcoded on-clicks for these words, each will runGame() with appropriate data
-  $('body').on('click', '#huge', function(){
+  $('body').on('click', '#people', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'huge_1',
+      "activityTitle": 'people_1',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['h','u','g','e']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['p','eo','p','le']   // ie. [“c”, “a”, “t”]
   		},
-  	  "graphemeToLearn": 'u',
+  	  "graphemeToLearn": 'eo',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
   });
-  $('body').on('click', '#arrive', function(){
+  $('body').on('click', '#seemed', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'arrive_1',
+      "activityTitle": 'seemed_1',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['a','rr', 'i', 'v', 'e']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['s', 'ee', 'med']   // ie. [“c”, “a”, “t”]
   		},
-  	  "graphemeToLearn": 'i',
+  	  "graphemeToLearn": 'ee',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
   });
-  $('body').on('click', '#great', function(){
+  $('body').on('click', '#speak', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'great_1',
+      //set to empty to test activityTitle generation when none is provided
+      "activityTitle": '',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['g','r','ea','t']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['s','p','ea','k']   // ie. [“c”, “a”, “t”]
   		},
   	  "graphemeToLearn": 'ea',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
   });
-  $('body').on('click', '#knew', function(){
+  $('body').on('click', '#remember', function(){
     //hard coding objects to send
     var objectToSend = {
-      "activityTitle": 'knew_1',
+      "activityTitle": 'remember_1',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['n','u']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['r','e', 'm', 'em', 'b', 'er']   // ie. [“c”, “a”, “t”]
   		},
-  	  "graphemeToLearn": 'n',
+  	  "graphemeToLearn": 'e',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
