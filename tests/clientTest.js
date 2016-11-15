@@ -18,7 +18,7 @@ describe('mainController', function(){
       "sentence": 'I look at all the lonely people'
     };
     appMgr.setActivityComplete = function(dataOut){
-      console.log(dataOut);
+      // console.log(dataOut);
       // $('iframe').remove();
     };
 
@@ -173,6 +173,16 @@ describe('mainController', function(){
 
       scope.placedWord.should.deep.equal([{letter: '_', placedIndex: -1}, {letter: 'e', placedIndex: 1}, {letter: 'o', placedIndex: 2}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}]);
 
+    });
+  }); // end describe tryAgain
+
+  describe('getRidOfMe()', function(){
+    it('should appMgr at activityTitle should equal dataOut', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+
+      scope.getRidOfMe();
+      appMgr['people_1'].should.deep.equal(SpellingFactory.getDataOut());
     });
   }); // end describe tryAgain
 });
