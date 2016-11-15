@@ -82,7 +82,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     });
     if (collapsed.includes(objectIn.word.fullWord)) {
       // console.log('rescrambling');
-      wordArray = generateLetterTiles();
+      wordArray = shuffle(wordArray);
     }
     return wordArray;
   };
