@@ -143,7 +143,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     });
     for(var i = 0; i < $scope.correctWord.length; i++){
       if(placedWord[i] == $scope.correctWord[i]){
-        console.log(true);
         $scope.change[i] = true;
       }//end if statement
     }//end for loop
@@ -273,7 +272,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   $scope.handleLeftDrop = function(letter, data, target){
     if (data.placedindex) {
-      $scope.handleSortDrop(letter, data.index, 0);
+      $scope.handleSortDrop(letter, data, {dataset: { index: 0 } });
     }
     else {
       $scope.placeLetter(letter, data.index, 0);
@@ -282,7 +281,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
 
   $scope.handleRightDrop = function(letter, data, target){
     if (data.placedindex) {
-      $scope.handleSortDrop(letter, data.index, $scope.placedWord.length - 1);
+      $scope.handleSortDrop(letter, data, {dataset: { index: $scope.placedWord.length - 1 } });
     }
     else {
       $scope.placeLetter(letter, data.index, $scope.placedWord.length - 1);
