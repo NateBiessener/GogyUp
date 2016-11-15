@@ -68,18 +68,32 @@ describe('mainController', function(){
   });
 
   describe('allLetter()', function(){
-    it('should contain the correct number of characters and the characters of correctWord', inject(function($controller){
+    it('should contain the correct number of characters and the characters of correctWord', function(){
       var scope = {};
-      var myController = $controller('mainController', {
-        $scope: scope,
-      });
+      var myController = $controller('mainController', {$scope: scope});
 
       scope.allLetter.length.should.equal(scope.correctWord.length + 2);
 
       for (var i = 0; i < scope.correctWord.length; i++) {
         expect(scope.allLetter).to.include(scope.correctWord[i]);
       }
-    }));
+    });
   }); // end describe generateLetterTiles()
+
+  describe('correctPlacement()', function(){
+    it('should set $scope.change to true if the letter at a given index matches in both placedWord and correctWord', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+
+      var placedWord = ['p', 'e', 'e', 'p', 'l', 'l'];
+      scope.correctPlacement(placedWord);
+
+      for(var i = 0; i < scope.correctWord.length; i++){
+        if(scope.placedWord[i] == scope.correctWord[i]){
+          scope.change[i].should.equal(true);
+        }
+      }
+    });
+  }); // end describe correctPlacement
 
 });
