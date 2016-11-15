@@ -46,7 +46,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     });
   };
 
-
   var generateLetterTiles = function(){
     var possible = "abcdefghijklmnopqrstuvwxyz";
     // console.log('in generateLetterTiles');
@@ -55,8 +54,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     for(var i= 0; i< objectIn.word.fullWord.length; i++){
       wordArray.push(objectIn.word.fullWord.charAt(i));
     }
-    var correctWordArray = wordArray;
-    // console.log(correctWordArray);
     //generate 2 random letters to add to array
     for( var j=0; j < 2; j++){
       wordArray.push(possible.charAt(Math.floor(Math.random() * possible.length)));
@@ -65,6 +62,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     //the letters in wordArray will be mixed around
     return shuffle(wordArray);
   }; // end generateLetterTiles function
+
   var shuffle = function(wordArray) {
     var m = wordArray.length, t, i;
 
@@ -83,7 +81,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
       return start + index;
     });
     if (collapsed.includes(objectIn.word.fullWord)) {
-      console.log('rescrambling');
+      // console.log('rescrambling');
       wordArray = generateLetterTiles();
     }
     return wordArray;
@@ -209,18 +207,37 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     }
   }
 
+  //returns starting index of grapheme in word
+  function findGrapheme(grapheme, word){
+    for (var i = 0; i < word.length; i++) {
+      //if the start of the grapheme is at i, check the rest of the grapheme agains the rest of the word
+      if (grapheme[0] === word[i]) {
+        for (var n = 0; n < grapheme.length; n++) {
+          //if grapheme[n] is not an underscore and doesn't match its corresponding position in word, go back to looping through the word
+          if (!(grapheme[n] === '_' || grapheme[n] === word[i + n])) {
+            break;
+          }
+          //if we reached the end of the grapheme without breaking, we've found our location within word, so we return i
+          if (n === grapheme.length - 1) {
+            return i;
+          }
+        }
+      }
+    }
+    //if we did not find the grapheme, return -1 to indicate grapheme is not in word
+    return -1;
+  }
+
   function showSecondHint(){
     $scope.firstHint = false;
     $scope.secondHint = true;
 
-    var targetArray = $scope.correctWord.split("");
-    var splitGraph = objectIn.graphemeToLearn.split("");
-    var graphemeIndex = $scope.correctWord.indexOf(objectIn.graphemeToLearn[0]);
+    var graphemeIndex = findGrapheme(objectIn.graphemeToLearn, $scope.correctWord);
 
     var j = 0;
-    for (var i = 0; i < targetArray.length; i++) {
+    for (var i = 0; i < $scope.correctWord.length; i++) {
       if(i >= graphemeIndex && i <= (graphemeIndex + (objectIn.graphemeToLearn.length - 1))){
-        $scope.placedWord.push({letter: splitGraph[j], placedIndex: i});
+        $scope.placedWord.push({letter: objectIn.graphemeToLearn[j], placedIndex: i});
         j++;
       } else {
         $scope.placedWord.push({letter: "_", placedIndex: -1});
@@ -231,7 +248,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   } // end placeGrapheme function
 
   $scope.underlineWords = function (sentence){
-    console.log('in underlineWords');
+    // console.log('in underlineWords');
     return $sce.trustAsHtml(sentence.replace(appMgr.spellingData.word.fullWord, '<u>'+appMgr.spellingData.word.fullWord+ '</u>'));
   };
 
