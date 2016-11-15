@@ -39,9 +39,12 @@ describe('mainController', function(){
   });
 
   var $controller;
+  var $parentScope;
+  var $scope;
 
-  beforeEach(inject(function(_$controller_){
+  beforeEach(inject(function(_$controller_, _$rootScope_){
     $controller = _$controller_;
+    $parentScope = _$rootScope_.$new();
   }));
 
   describe('removeLetter()', function(){
@@ -96,4 +99,45 @@ describe('mainController', function(){
     });
   }); // end describe correctPlacement
 
+  describe('checkSpelling()', function(){
+    it('should indicate that the placedWord is correct', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      var placedWord = [{letter:'p'}, {letter:'e'}, {letter:'o'}, {letter:'p'}, {letter:'l'}, {letter:'e'}];
+      scope.$parent.fireworks = false;
+      scope.checkSpelling(placedWord);
+
+      scope.correctAnswer.should.equal(true);
+      scope.$parent.fireworks.should.equal(true);
+    });
+
+    it('should indicate that the placedWord is incorrect on the final attempt', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      var placedWord = [{letter:'p'}, {letter:'e'}, {letter:'e'}, {letter:'p'}, {letter:'l'}, {letter:'l'}];
+      scope.$parent.shakeIt = false;
+      scope.secondHint = true;
+      scope.checkSpelling(placedWord);
+
+      scope.finalIncorrect.should.equal(true);
+      scope.$parent.shakeIt.should.equal(true);
+    });
+
+    it('should indicate that the placedWord is incorrect', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      var placedWord = [{letter:'p'}, {letter:'e'}, {letter:'e'}, {letter:'p'}, {letter:'l'}, {letter:'l'}];
+      scope.$parent.shakeIt = false;
+      scope.checkSpelling(placedWord);
+
+      scope.incorrectAnswer.should.equal(true);
+      scope.$parent.shakeIt.should.equal(true);
+    });
+  }); // end describe checkSpelling
 });
