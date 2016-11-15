@@ -68,13 +68,17 @@ describe('mainController', function(){
   });
 
   describe('allLetter()', function(){
-    it('should push fullWord characters into wordArray as well as two random letters from possible', inject(function($controller){
+    it('should contain the correct number of characters and the characters of correctWord', inject(function($controller){
       var scope = {};
       var myController = $controller('mainController', {
         $scope: scope,
       });
 
       scope.allLetter.length.should.equal(scope.correctWord.length + 2);
+
+      for (var i = 0; i < scope.correctWord.length; i++) {
+        expect(scope.allLetter).to.include(scope.correctWord[i]);
+      }
     }));
   }); // end describe generateLetterTiles()
 
