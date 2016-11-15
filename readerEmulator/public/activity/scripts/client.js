@@ -46,8 +46,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     });
   };
 
-
-  var generateLetterTiles = function(){
+  $scope.generateLetterTiles = function(){
     var possible = "abcdefghijklmnopqrstuvwxyz";
     // console.log('in generateLetterTiles');
     var wordArray = [];
@@ -55,8 +54,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     for(var i= 0; i< objectIn.word.fullWord.length; i++){
       wordArray.push(objectIn.word.fullWord.charAt(i));
     }
-    var correctWordArray = wordArray;
-    // console.log(correctWordArray);
     //generate 2 random letters to add to array
     for( var j=0; j < 2; j++){
       wordArray.push(possible.charAt(Math.floor(Math.random() * possible.length)));
@@ -65,6 +62,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     //the letters in wordArray will be mixed around
     return shuffle(wordArray);
   }; // end generateLetterTiles function
+
   var shuffle = function(wordArray) {
     var m = wordArray.length, t, i;
 
@@ -84,12 +82,13 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     });
     if (collapsed.includes(objectIn.word.fullWord)) {
       console.log('rescrambling');
-      wordArray = generateLetterTiles();
+      wordArray = $scope.generateLetterTiles();
     }
     return wordArray;
   };
+
   //generate letter tiles onLoad
-  $scope.allLetter = generateLetterTiles();
+  $scope.allLetter = $scope.generateLetterTiles();
 
   //remove letter from generated tiles and place in playing field
   $scope.placeLetter = function(letter, index, targetIndex){

@@ -63,5 +63,17 @@ describe('mainController', function(){
       scope.placedWord.should.deep.equal([{letter: 'b', placedIndex: 1}]);
       scope.placed.should.deep.equal([true, false]);
     }));
-  });
+  }); // end describe removeLetter()
+
+  describe('allLetter()', function(){
+    it('should push fullWord characters into wordArray as well as two random letters from possible', inject(function($controller){
+      var scope = {};
+      var myController = $controller('mainController', {
+        $scope: scope,
+      });
+
+      scope.allLetter.length.should.equal(scope.correctWord.length + 2);
+    }));
+  }); // end describe generateLetterTiles()
+
 });
