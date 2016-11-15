@@ -74,9 +74,10 @@ $(document).ready(function(){
       "activityTitle": 'remember_1',
   	  "word": {
 		    "fullWord": $(this).html(),
-		    "graphemes": ['r','e', 'm', 'em', 'b', 'er']   // ie. [“c”, “a”, “t”]
+		    "graphemes": ['r','e', 'm', 'e', 'm', 'b', 'er']   // ie. [“c”, “a”, “t”]
   		},
-  	  "graphemeToLearn": 'e',
+      //setting to e__e for testing purposes
+  	  "graphemeToLearn": 'e__e',
   	  "sentence": removeTags($(this).parent().html())
   	};
     runGame(objectToSend);
