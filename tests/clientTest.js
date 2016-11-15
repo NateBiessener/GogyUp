@@ -140,4 +140,39 @@ describe('mainController', function(){
       scope.$parent.shakeIt.should.equal(true);
     });
   }); // end describe checkSpelling
+
+  describe('tryAgain()', function(){
+    it('should showFirstHint', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      scope.firstHint = false;
+      scope.secondHint = false;
+      scope.tryAgain();
+
+      for (var i = 0; i < scope.correctWord.length; i++) {
+        scope.change[i] = false;
+      }
+
+      scope.placedWord.should.deep.equal([{letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}]);
+
+    });
+
+    it('should showSecondHint', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      scope.firstHint = true;
+      scope.tryAgain();
+
+      for (var i = 0; i < scope.correctWord.length; i++) {
+        scope.change[i] = false;
+      }
+
+      scope.placedWord.should.deep.equal([{letter: '_', placedIndex: -1}, {letter: 'e', placedIndex: 1}, {letter: 'o', placedIndex: 2}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}]);
+
+    });
+  }); // end describe tryAgain
 });
