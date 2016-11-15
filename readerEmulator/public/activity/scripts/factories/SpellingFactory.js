@@ -53,7 +53,7 @@ myApp.factory('SpellingFactory', [function(){
   var setActivityTitle = function(word){
     word += Date.now();
     return word;
-  }
+  };
 
   var storeObject = function(object){
     objectIn = object;

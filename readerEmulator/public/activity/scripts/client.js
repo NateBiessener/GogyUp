@@ -47,6 +47,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
   };
 
   var generateLetterTiles = function(){
+
     var possible = "abcdefghijklmnopqrstuvwxyz";
     // console.log('in generateLetterTiles');
     var wordArray = [];
@@ -86,6 +87,7 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     }
     return wordArray;
   };
+
   //generate letter tiles onLoad
   $scope.allLetter = generateLetterTiles();
 
