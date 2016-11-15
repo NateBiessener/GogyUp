@@ -143,6 +143,32 @@ describe('mainController', function(){
     });
   })
 
+  describe('handleSortDrop()', function(){
+    it('should move a tile to the right', function(){
+      var scope = {};
+      var controller = $controller('mainController', {$scope: scope});
+      scope.placedWord = [{letter: 'a', placedIndex: 0}, {letter: 'b', placedIndex: 1}, {letter: 'c', placedIndex: 2}];
+      scope.placed = [true, true, true];
+      var letter = 'a';
+      var data = {index: '0', placedindex: '0'};
+      var target = {dataset: {index: 2}};
+      scope.handleSortDrop(letter, data, target);
+      scope.placedWord.should.deep.equal([{letter: 'b', placedIndex: 1}, {letter: 'c', placedIndex: 2}, {letter: 'a', placedIndex: 0}]);
+    });
+
+    it('should move a tile to the left', function(){
+      var scope = {};
+      var controller = $controller('mainController', {$scope: scope});
+      scope.placedWord = [{letter: 'a', placedIndex: 0}, {letter: 'b', placedIndex: 1}, {letter: 'c', placedIndex: 2}];
+      scope.placed = [true, true, true];
+      var letter = 'c';
+      var data = {index: '2', placedindex: '2'};
+      var target = {dataset: {index: 0}};
+      scope.handleSortDrop(letter, data, target);
+      scope.placedWord.should.deep.equal([{letter: 'c', placedIndex: 2}, {letter: 'a', placedIndex: 0}, {letter: 'b', placedIndex: 1}]);
+    });
+  });
+
   describe('allLetter()', function(){
     it('should push fullWord characters into wordArray as well as two random letters from possible', inject(function($controller){
       var scope = {};
