@@ -197,8 +197,6 @@ myApp.controller('mainController', ['$scope', '$sce', 'SpellingFactory', functio
     else if ($scope.firstHint) {
       showSecondHint();
     }
-
-    $scope.$parent.shakeIt = false;
   };
 
   function showFirstHint(){

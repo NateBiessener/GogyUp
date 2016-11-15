@@ -18,7 +18,7 @@ describe('mainController', function(){
       "sentence": 'I look at all the lonely people'
     };
     appMgr.setActivityComplete = function(dataOut){
-      console.log(dataOut);
+      // console.log(dataOut);
       // $('iframe').remove();
     };
 
@@ -39,8 +39,12 @@ describe('mainController', function(){
   });
 
   var $controller;
-  beforeEach(inject(function(_$controller_){
+  var $parentScope;
+  var $scope;
+
+  beforeEach(inject(function(_$controller_, _$rootScope_){
     $controller = _$controller_;
+    $parentScope = _$rootScope_.$new();
   }));
 
   describe('removeLetter()', function(){
@@ -170,14 +174,118 @@ describe('mainController', function(){
   });
 
   describe('allLetter()', function(){
-    it('should push fullWord characters into wordArray as well as two random letters from possible', inject(function($controller){
+    it('should contain the correct number of characters and the characters of correctWord', function(){
       var scope = {};
-      var myController = $controller('mainController', {
-        $scope: scope,
-      });
+      var myController = $controller('mainController', {$scope: scope});
 
       scope.allLetter.length.should.equal(scope.correctWord.length + 2);
-    }));
+
+      for (var i = 0; i < scope.correctWord.length; i++) {
+        expect(scope.allLetter).to.include(scope.correctWord[i]);
+      }
+    });
   }); // end describe generateLetterTiles()
 
+  describe('correctPlacement()', function(){
+    it('should set $scope.change to true if the letter at a given index matches in both placedWord and correctWord', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+
+      var placedWord = ['p', 'e', 'e', 'p', 'l', 'l'];
+      scope.correctPlacement(placedWord);
+
+      for(var i = 0; i < scope.correctWord.length; i++){
+        if(scope.placedWord[i] == scope.correctWord[i]){
+          scope.change[i].should.equal(true);
+        }
+      }
+    });
+  }); // end describe correctPlacement
+
+  describe('checkSpelling()', function(){
+    it('should indicate that the placedWord is correct', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      var placedWord = [{letter:'p'}, {letter:'e'}, {letter:'o'}, {letter:'p'}, {letter:'l'}, {letter:'e'}];
+      scope.$parent.fireworks = false;
+      scope.checkSpelling(placedWord);
+
+      scope.correctAnswer.should.equal(true);
+      scope.$parent.fireworks.should.equal(true);
+    });
+
+    it('should indicate that the placedWord is incorrect on the final attempt', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      var placedWord = [{letter:'p'}, {letter:'e'}, {letter:'e'}, {letter:'p'}, {letter:'l'}, {letter:'l'}];
+      scope.$parent.shakeIt = false;
+      scope.secondHint = true;
+      scope.checkSpelling(placedWord);
+
+      scope.finalIncorrect.should.equal(true);
+      scope.$parent.shakeIt.should.equal(true);
+    });
+
+    it('should indicate that the placedWord is incorrect', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      var placedWord = [{letter:'p'}, {letter:'e'}, {letter:'e'}, {letter:'p'}, {letter:'l'}, {letter:'l'}];
+      scope.$parent.shakeIt = false;
+      scope.checkSpelling(placedWord);
+
+      scope.incorrectAnswer.should.equal(true);
+      scope.$parent.shakeIt.should.equal(true);
+    });
+  }); // end describe checkSpelling
+
+  describe('tryAgain()', function(){
+    it('should showFirstHint', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      scope.firstHint = false;
+      scope.secondHint = false;
+      scope.tryAgain();
+
+      for (var i = 0; i < scope.correctWord.length; i++) {
+        scope.change[i] = false;
+      }
+
+      scope.placedWord.should.deep.equal([{letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}]);
+
+    });
+
+    it('should showSecondHint', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+      scope.$parent = $parentScope;
+
+      scope.firstHint = true;
+      scope.tryAgain();
+
+      for (var i = 0; i < scope.correctWord.length; i++) {
+        scope.change[i] = false;
+      }
+
+      scope.placedWord.should.deep.equal([{letter: '_', placedIndex: -1}, {letter: 'e', placedIndex: 1}, {letter: 'o', placedIndex: 2}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}, {letter: '_', placedIndex: -1}]);
+
+    });
+  }); // end describe tryAgain
+
+  describe('getRidOfMe()', function(){
+    it('should appMgr at activityTitle should equal dataOut', function(){
+      var scope = {};
+      var myController = $controller('mainController', {$scope: scope});
+
+      scope.getRidOfMe();
+      appMgr['people_1'].should.deep.equal(SpellingFactory.getDataOut());
+    });
+  }); // end describe tryAgain
 });
