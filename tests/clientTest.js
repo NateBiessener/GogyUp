@@ -38,14 +38,30 @@ describe('mainController', function(){
     };
   });
 
-  describe('dyslexia', function(){
-  	it('should be false', inject(function($controller) {
-  		var scope = {};
+  describe('removeLetter()', function(){
+    it('should replace a letter with "_" when there is a hint', inject(function($controller){
+      var scope = {};
   		var myController = $controller('mainController', {
   			$scope: scope
   		});
-  		scope.dyslexia.should.equal(false);
-  	}));
-  });
+      scope.placedWord = [{letter: 'a', placedIndex: 0}, {letter: 'b', placedIndex: 1}];
+      scope.placed = [true, true];
+      scope.firstHint = true;
+      scope.removeLetter(0, 1);
+      scope.placedWord.should.deep.equal([{letter: '_', placedIndex: -1}, {letter: 'b', placedIndex: 1}]);
+      scope.placed.should.deep.equal([true, false]);
+    }));
 
+    it('should remove a letter when there is no hint', inject(function($controller){
+      var scope = {};
+  		var myController = $controller('mainController', {
+  			$scope: scope
+  		});
+      scope.placedWord = [{letter: 'a', placedIndex: 0}, {letter: 'b', placedIndex: 1}];
+      scope.placed = [true, true];
+      scope.removeLetter(0, 1);
+      scope.placedWord.should.deep.equal([{letter: 'b', placedIndex: 1}]);
+      scope.placed.should.deep.equal([true, false]);
+    }));
+  });
 });
