@@ -145,7 +145,7 @@ describe('mainController', function(){
       scope.placedWord.should.deep.equal([{letter: 'c', placedIndex: 3}, {letter: '_', placedIndex: 1}]);
       scope.placed[3].should.equal(true);
     });
-  })
+  });
 
   describe('handleSortDrop()', function(){
     it('should move a tile to the right', function(){
