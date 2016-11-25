@@ -4,6 +4,7 @@ GogyUp Read
 This is a spelling game that will be integrated into GogyUp's literacy app.
 
 The bulk of this project is in the readerEmulator folder.
+
 The spelling game portion is in readerEmulator/public/activity.
 
 Features:
