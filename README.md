@@ -3,6 +3,9 @@ GogyUp Read
 
 This is a spelling game that will be integrated into GogyUp's literacy app.
 
+The bulk of this project is in the readerEmulator folder.
+The spelling game portion is in readerEmulator/public/activity.
+
 Features:
 * Provides user three attempts at spelling the selected word using letter tiles
 * Progressive hints if the user fails their first or second attempts
